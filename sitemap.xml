@@ -8,6 +8,18 @@
   </url>
   
   <url>
+    <loc>http://www.example.com/about/</loc>
+  </url>
+  
+  <url>
+    <loc>http://www.example.com/blog/</loc>
+  </url>
+  
+  <url>
+    <loc>http://www.example.com/projects/</loc>
+  </url>
+  
+  <url>
     <loc>http://www.example.com/authors/</loc>
     <priority>0</priority>
   </url>

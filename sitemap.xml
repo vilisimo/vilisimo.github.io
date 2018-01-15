@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://www.example.com/posts/placeholder/</loc>
+    <loc>http://www.example.com/posts/placeholder-title/</loc>
     <lastmod>2018-01-11T22:40:08+02:00</lastmod>
   </url>
   
@@ -12,7 +12,8 @@
   </url>
   
   <url>
-    <loc>http://www.example.com/blog/</loc>
+    <loc>http://www.example.com/posts/</loc>
+    <lastmod>2018-01-11T22:40:08+02:00</lastmod>
   </url>
   
   <url>
@@ -31,12 +32,6 @@
   
   <url>
     <loc>http://www.example.com/</loc>
-    <lastmod>2018-01-11T22:40:08+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.example.com/posts/</loc>
     <lastmod>2018-01-11T22:40:08+02:00</lastmod>
     <priority>0</priority>
   </url>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Initial</title>
+    <title>Initial</title>
     <link>http://www.example.com/posts/</link>
-    <description>Recent content in Posts on Initial</description>
+    <description>Recent content on Initial</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 11 Jan 2018 22:40:08 +0200</lastBuildDate>
     
@@ -12,10 +12,10 @@
     
     <item>
       <title>Placeholder Title</title>
-      <link>http://www.example.com/posts/placeholder/</link>
+      <link>http://www.example.com/posts/placeholder-title/</link>
       <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
       
-      <guid>http://www.example.com/posts/placeholder/</guid>
+      <guid>http://www.example.com/posts/placeholder-title/</guid>
       <description>Placeholder content</description>
     </item>
     

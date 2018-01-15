@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Initial</title>
-    <link>http://www.example.com/posts/</link>
+    <link>https://vilisimo.github.io/posts/</link>
     <description>Recent content on Initial</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 11 Jan 2018 22:40:08 +0200</lastBuildDate>
     
-	<atom:link href="http://www.example.com/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://vilisimo.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Placeholder Title</title>
-      <link>http://www.example.com/posts/placeholder-title/</link>
+      <link>https://vilisimo.github.io/posts/placeholder-title/</link>
       <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
       
-      <guid>http://www.example.com/posts/placeholder-title/</guid>
+      <guid>https://vilisimo.github.io/posts/placeholder-title/</guid>
       <description>Placeholder content</description>
     </item>
     

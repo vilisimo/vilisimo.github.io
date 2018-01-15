@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Initial</title>
-    <link>http://www.example.com/projects/</link>
+    <link>https://vilisimo.github.io/projects/</link>
     <description>Recent content on Initial</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	<atom:link href="http://www.example.com/projects/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://vilisimo.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

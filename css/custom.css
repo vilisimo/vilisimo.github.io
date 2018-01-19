@@ -1,0 +1,12 @@
+.list-item > .project-title {
+	font-weight: 500;
+}
+
+.project-content {
+  font-size: 85%;
+  display: none;
+}
+
+.project-github {
+  line-height: 3;
+}

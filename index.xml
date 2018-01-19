@@ -11,12 +11,62 @@
     
     
     <item>
-      <title>Placeholder Title</title>
-      <link>https://vilisimo.github.io/posts/placeholder-title/</link>
+      <title>Cookme</title>
+      <link>https://vilisimo.github.io/projects/cookme/</link>
       <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
       
-      <guid>https://vilisimo.github.io/posts/placeholder-title/</guid>
+      <guid>https://vilisimo.github.io/projects/cookme/</guid>
+      <description>Cookme is a practice website that serves as a simple recipe holder with a no-nonsense frontend.
+https://cookmetoo.herokuapp.com/
+A user is presented with a clean interface that enables browsing of recipes that have been added by the website&amp;rsquo;s users. Additionally, the user can search for ingredient(s) that he/she would like to use. If there are recipes containing them, the matching recipes will be shown. Furthermore, user can add recipes and ingredients to his/her fridge.</description>
+    </item>
+    
+    <item>
+      <title>Dropwizard Crud</title>
+      <link>https://vilisimo.github.io/projects/dropwizard-crud/</link>
+      <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
+      
+      <guid>https://vilisimo.github.io/projects/dropwizard-crud/</guid>
+      <description>The project is a proof of concept CRUD toy. It was mainly developed to gain familiarity with:
+ Dropwizard Groovy Spock Camel Guice JDBI Docker  Hence, there is no complex logic. It mostly consists of wiring components and libraries to check how they work with one another. In the future, however, it might serve as a useful reminder of how things work.</description>
+    </item>
+    
+    <item>
+      <title>Placeholder Title</title>
+      <link>https://vilisimo.github.io/blog/placeholder/</link>
+      <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
+      
+      <guid>https://vilisimo.github.io/blog/placeholder/</guid>
       <description>Placeholder content</description>
+    </item>
+    
+    <item>
+      <title>SteamCLI</title>
+      <link>https://vilisimo.github.io/projects/steamcli/</link>
+      <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
+      
+      <guid>https://vilisimo.github.io/projects/steamcli/</guid>
+      <description>steamCLI is a command line tool that allows searching Steam for price information about the game/app straight from the command line. It supports recent and overall ratings, current prices on Steam, historical low price, different currencies and regions.</description>
+    </item>
+    
+    <item>
+      <title>Tables</title>
+      <link>https://vilisimo.github.io/projects/tables/</link>
+      <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
+      
+      <guid>https://vilisimo.github.io/projects/tables/</guid>
+      <description>tables is a library that provides basic tools to build a table and print it to your terminal. It was extracted from tasks project, when building and printing a table proved to be more tricky than the project itself.</description>
+    </item>
+    
+    <item>
+      <title>Tasks</title>
+      <link>https://vilisimo.github.io/projects/tasks/</link>
+      <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
+      
+      <guid>https://vilisimo.github.io/projects/tasks/</guid>
+      <description>Tasks is a simple command line tool to enable creating and keeping track of tasks that need to be done.
+The major reason for this project was to have a simple project that allows some degree of experimentation. While the logic of an app is not particularly perplexing, it allowed to experiment with the following technologies a little bit more:
+ HSQLDB JDBC Liquibase Log4j2 Maven Commons CLI  Apparently, coding CLI tools in Java is quite awkward.</description>
     </item>
     
   </channel>

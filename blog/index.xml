@@ -5,19 +5,9 @@
     <link>https://vilisimo.github.io/blog/</link>
     <description>Recent content on Initial</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 11 Jan 2018 22:40:08 +0200</lastBuildDate>
     
 	<atom:link href="https://vilisimo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Placeholder Title</title>
-      <link>https://vilisimo.github.io/blog/placeholder/</link>
-      <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
-      
-      <guid>https://vilisimo.github.io/blog/placeholder/</guid>
-      <description>Placeholder content</description>
-    </item>
     
   </channel>
 </rss>

@@ -9,6 +9,11 @@
   text-transform: uppercase;
 }
 
+.project-source {
+  font-size: 10px;
+  text-transform: lowercase;
+}
+
 .hidden {
   display: none;
 }

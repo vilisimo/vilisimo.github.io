@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Projects on Machine Code Never Lies</title>
+    <title>Machine Code Never Lies</title>
     <link>https://vilisimo.github.io/projects/</link>
-    <description>Recent content in Projects on Machine Code Never Lies</description>
+    <description>Recent content on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Thu, 11 Jan 2018 22:40:08 +0200</lastBuildDate>
@@ -18,7 +18,7 @@
       
       <guid>https://vilisimo.github.io/projects/steamcli/</guid>
       <description>steamCLI is a command line tool that allows searching for price information about games on Steam straight from the command line. It supports recent and overall ratings, current prices (on Steam), historical low price, different currencies and regions.
-The tool was written purely in Python 3.6 and leverages IsThereAnyDeal API.</description>
+The tool was written purely in Python 3.6 and leverages IsThereAnyDeal API (thanks!).</description>
     </item>
     
     <item>
@@ -27,8 +27,8 @@ The tool was written purely in Python 3.6 and leverages IsThereAnyDeal API.</des
       <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
       
       <guid>https://vilisimo.github.io/projects/cookme/</guid>
-      <description>Cookme is a website that serves as a simple recipe holder with a no-nonsense frontend.
-https://cookmetoo.herokuapp.com/
+      <description>https://cookmetoo.herokuapp.com/
+Cookme serves as a simple recipe holder with a no-nonsense frontend.
 A user can browse recipes that have been added by other users. Additionally, the user can search for ingredient(s) that he/she would like to use. If there are recipes containing them, the matching recipes will be shown. Furthermore, the user can add recipes and ingredients to his/her fridge. Once ingredients and recipes are added, the user can search the fridge for liked recipes that can be made with ingredients in the fridge.</description>
     </item>
     
@@ -49,7 +49,7 @@ The main reason for this project was to have a simple project that allows some d
       <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
       
       <guid>https://vilisimo.github.io/projects/tables/</guid>
-      <description>tables is a library that provides basic tools to build a table and print it to your terminal. It was extracted from tasks project, when building and printing a table proved to be more tricky than the project itself.</description>
+      <description>tables is a library that provides basic tools to build a table and print it to a terminal. It was extracted from tasks project, when building and printing a table proved to be more tricky than the whole project itself.</description>
     </item>
     
     <item>
@@ -58,8 +58,8 @@ The main reason for this project was to have a simple project that allows some d
       <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
       
       <guid>https://vilisimo.github.io/projects/books-crud/</guid>
-      <description>The project is a proof of concept CRUD project. It was developed to gain familiarity with:
- Dropwizard Groovy + Spock Camel Guice JDBI Docker  There is no complex logic. It mostly consists of wiring components and libraries to check how they work with one another. In the future, however, it might serve as a useful reminder of how things work.</description>
+      <description>The project is a proof of concept CRUD app. Its main purpose was to have a place to play with:
+ Dropwizard Groovy + Spock Camel Guice JDBI Docker  It mostly consists of wiring components and libraries to check how they work with one another. Hence, it really is a simple CRUD app.</description>
     </item>
     
   </channel>

@@ -28,7 +28,7 @@ The tool was written purely in Python 3.6 and leverages IsThereAnyDeal API (than
       
       <guid>https://vilisimo.github.io/projects/cookme/</guid>
       <description>https://cookmetoo.herokuapp.com/
-Cookme serves as a simple recipe holder with a no-nonsense frontend.
+cookme serves as a simple recipe holder with a no-nonsense frontend.
 A user can browse recipes that have been added by other users. Additionally, the user can search for ingredient(s) that he/she would like to use. If there are recipes containing them, the matching recipes will be shown. Furthermore, the user can add recipes and ingredients to his/her fridge. Once ingredients and recipes are added, the user can search the fridge for liked recipes that can be made with ingredients in the fridge.</description>
     </item>
     
@@ -38,7 +38,7 @@ A user can browse recipes that have been added by other users. Additionally, the
       <pubDate>Thu, 11 Jan 2018 22:40:08 +0200</pubDate>
       
       <guid>https://vilisimo.github.io/projects/tasks/</guid>
-      <description>Tasks is a simple command line tool to enable creating and keeping track of tasks that need to be done.
+      <description>tasks is a simple command line tool to enable creating and keeping track of tasks that need to be done.
 The main reason for this project was to have a simple project that allows some degree of experimentation with the following technologies a little bit more:
  HSQLDB JDBC Liquibase Log4j2 Maven Commons CLI  Apparently, coding CLI tools in Java is quite awkward. Who could have guessed.</description>
     </item>

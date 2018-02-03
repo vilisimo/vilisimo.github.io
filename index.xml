@@ -49,7 +49,7 @@ A user can browse recipes that have been added by other users. Additionally, the
       <guid>https://vilisimo.github.io/projects/tasks/</guid>
       <description>tasks is a command line tool to enable creating and keeping track of tasks that need to be done.
 The main reason for this project was to have a simple project that allows some degree of experimentation with the following technologies a little bit more:
- HSQLDB JDBC Liquibase Log4j2 Maven Commons CLI  Apparently, coding CLI tools in Java is quite awkward. Who could have guessed.</description>
+ Java 9 HSQLDB JDBC Liquibase Log4j2 Maven Commons CLI  Apparently, coding CLI tools in Java is quite awkward. Who could have guessed.</description>
     </item>
     
     <item>
@@ -58,7 +58,8 @@ The main reason for this project was to have a simple project that allows some d
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://vilisimo.github.io/projects/tables/</guid>
-      <description>tables is a library that provides basic tools to build a table and print it to a terminal. It was extracted from tasks project, when building and printing a table proved to be more tricky than the whole project itself.</description>
+      <description>tables is a library that provides basic tools to build a table and print it to a terminal. It was extracted from tasks project, when building and printing a table proved to be more tricky than the whole project itself.
+Written in Java 9.</description>
     </item>
     
     <item>
@@ -68,7 +69,7 @@ The main reason for this project was to have a simple project that allows some d
       
       <guid>https://vilisimo.github.io/projects/books-crud/</guid>
       <description>The project is a proof of concept CRUD app. Its main purpose was to have a place to play with:
- Dropwizard Groovy + Spock Camel Guice JDBI Docker  It mostly consists of wiring components and libraries to check how they work with one another. Hence, it really is a simple CRUD app.</description>
+ Java 8 Dropwizard Groovy + Spock Camel Guice JDBI Docker  It mostly consists of wiring components and libraries to check how they work with one another. Hence, it really is a simple CRUD app.</description>
     </item>
     
   </channel>

@@ -1,0 +1,70 @@
+.section-content {
+    margin-bottom: 2em;
+}
+
+/* ********************** */
+/* Blog and other entries */
+/* ********************** */
+
+.entries {
+    padding-left: 1em;
+
+    a:hover {
+        color: $decoration;
+    }
+}
+
+.entry {
+    margin: 1em 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+
+    .entry-date {
+        color: $supporting-info;
+        font-style: italic;
+        min-width: 10em;
+    }
+
+    .entry-title {
+        min-width: 10em;
+        text-align: left;
+    }
+}
+
+/* *************** */
+/* Project entries */
+/* *************** */
+
+.project {
+    margin: 1em 0;
+    list-style-type: none;
+
+    .project-description {
+        color: $supporting-info;
+        min-width: 10em;
+
+        p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+    }
+}
+
+ul.pagination {
+    padding: 0;
+    margin: $px43-2 0 $px28-8 0;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+
+    li {
+        display: inline-block;
+        margin: 0 0.2em;
+        font-size: 1.05em;
+    }
+
+    li.active {
+        font-weight: 700;
+    }
+}

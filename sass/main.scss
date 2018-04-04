@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:700,800');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text:700');
+
+$raleway: 'Raleway', sans-serif;
+$crimson: 'Crimson Text', serif;
+$open-sans: 'Open Sans', sans-serif;
+
+$active: #383838;
+$hover: #606060;
+$inactive: #909090;
+$background: #f7f3ed;
+$content: white;
+$border: #ddd;
+$separating-border: 1px solid #eee;
+$supporting-info: #bcbcbc;
+$decoration: #0af;
+$quote: #515A5A;
+
+// Based on 16 px
+$px5: 0.3125em;
+$px10: 0.625em;
+$px12: 0.75em;
+$px14: 0.875em;
+$px15: 0.9375em;
+$px16: 1em;
+$px20: 1.25em;
+$px24: 1.5em;
+$px25: 1.5625em;
+$px28-8: 1.8em;
+$px30: 1.875em;
+$px43-2: 2.7em;
+$px45: 2.8125em;
+$px70: 4.375em;
+$px700: 43.75em;
+
+@import 'general';
+@import 'header';
+@import 'footer';
+@import 'single';
+@import 'index';
+@import 'list';
+@import 'taxonomies';
+@import 'code';
+
+%header {
+    margin-bottom: 2em;
+    padding-top: $px20;
+}
+
+body {
+    background-color: $background;
+}
+
+main {
+    background-color: $content;
+    border: 1px solid $border;
+    margin: 0 auto;
+    padding: $px25 $px70;
+    max-width: $px700;
+
+    @media screen and (max-width: 960px) {
+        max-width: 75%;
+    }
+
+    @media screen and (max-width: 500px) {
+        max-width: 100%;
+        margin: 0;
+        padding: $px15 $px10;
+    }
+}

@@ -1,0 +1,30 @@
+$height: 1.25em; // 20px / 16px = 18 px
+$width: 1.3em; // 20px / 16px = 18 px
+
+%icon {
+    opacity: 0.5;
+    transition: all 0.3s ease-in;
+    height: $height;
+    width: $width;
+}
+
+body > footer {
+    text-align: center;
+    margin: 0.9375em 0;
+}
+
+#social-icons {
+    margin: 0.3125em 0; // 5px
+
+    img {
+        margin: 0 0.125em; // 2px
+    }
+}
+
+#social-icons img {
+    @extend %icon;
+}
+
+#social-icons img:hover {
+    opacity: 1;
+}

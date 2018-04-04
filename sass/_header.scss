@@ -1,0 +1,51 @@
+#page-header {
+    text-align: center;
+
+    h1 {
+        margin-top: 0.625em;
+        margin-bottom: 0.3125em;
+        line-height: 1;
+
+        a {
+            display: inline-block;
+            font-family: $raleway;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-flow: row wrap;
+
+        li {
+            text-transform: uppercase;
+            list-style-type: none;
+            padding: $px5;
+        }
+    }
+}
+
+nav {
+    margin: $px10 0 $px15 0;
+
+    a {
+        font-family: $raleway;
+        font-weight: 700;
+        font-size: 1em;
+        color: $inactive;
+    }
+
+    li > a:hover {
+        color: $hover;
+    }
+}
+
+.nav-current {
+    a, a:hover {
+        color: $active;
+    }
+}

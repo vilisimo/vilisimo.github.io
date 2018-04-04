@@ -1,0 +1,60 @@
+.recent-posts {
+    margin: 0;
+    padding: 0;
+
+    li {
+        list-style-type: none;
+        margin: $px45 0;
+    }
+
+    header {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    h3 {
+        font-size: $px24;
+        margin: 0;
+        flex-grow: 9;
+        float: left;
+        vertical-align: bottom;
+
+        a {
+            display: inline-block;
+        }
+
+        a:hover {
+            color: $decoration;
+        }
+    }
+
+    .post-date {
+        margin: 0;
+        font-size: $px12;
+        flex-grow: 1;
+        float: right;
+        text-align: right;
+        color: $supporting-info;
+    }
+
+    footer {
+        a {
+            font-size: $px14;
+        }
+        
+        a:hover {
+            color: $decoration;
+        }
+    }
+}
+
+.more-posts {
+    display: block;
+    font-weight: bold;
+    margin: $px43-2 0 $px28-8 0;
+    text-align: center;
+}
+
+.more-posts:hover {
+    color: $decoration;
+}

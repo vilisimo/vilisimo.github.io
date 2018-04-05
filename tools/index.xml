@@ -10,5 +10,149 @@
 	<atom:link href="https://vilisimo.github.io/tools/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Aws</title>
+      <link>https://vilisimo.github.io/tools/aws/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Camel</title>
+      <link>https://vilisimo.github.io/tools/camel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/camel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Django</title>
+      <link>https://vilisimo.github.io/tools/django/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/django/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://vilisimo.github.io/tools/docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dropwizard</title>
+      <link>https://vilisimo.github.io/tools/dropwizard/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/dropwizard/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Guice</title>
+      <link>https://vilisimo.github.io/tools/guice/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/guice/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Heroku</title>
+      <link>https://vilisimo.github.io/tools/heroku/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/heroku/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hsqldb</title>
+      <link>https://vilisimo.github.io/tools/hsqldb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/hsqldb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://vilisimo.github.io/tools/hugo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jdbc</title>
+      <link>https://vilisimo.github.io/tools/jdbc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/jdbc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jdbi</title>
+      <link>https://vilisimo.github.io/tools/jdbi/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/jdbi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jquery</title>
+      <link>https://vilisimo.github.io/tools/jquery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/jquery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Liquibase</title>
+      <link>https://vilisimo.github.io/tools/liquibase/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/liquibase/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Maven</title>
+      <link>https://vilisimo.github.io/tools/maven/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/maven/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spock</title>
+      <link>https://vilisimo.github.io/tools/spock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/spock/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sqlite</title>
+      <link>https://vilisimo.github.io/tools/sqlite/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/tools/sqlite/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

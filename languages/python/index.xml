@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Machine Code Never Lies</title>
+    <link>https://vilisimo.github.io/languages/python/</link>
+    <description>Recent content in Python on Machine Code Never Lies</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://vilisimo.github.io/languages/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cookme</title>
+      <link>https://vilisimo.github.io/project/cookme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/project/cookme/</guid>
+      <description>What cookme serves as a simple recipe holder with a no-nonsense frontend. You can visit it here:
+https://cookmetoo.herokuapp.com/
+It takes a while to load the first time, as it is on a free Heroku tier.
+A user can browse recipes that have been added by other users. Additionally, the user can search for ingredient(s) that he/she would like to use. If there are recipes containing them, the matching recipes will be shown.</description>
+    </item>
+    
+    <item>
+      <title>SteamCLI</title>
+      <link>https://vilisimo.github.io/project/steamcli/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/project/steamcli/</guid>
+      <description>What steamCLI is a command line tool that allows searching for prices of games on Steam straight from the command line. It supports recent and overall ratings, current prices (on Steam), historical low price, different currencies and regions.
+The tool was written purely in Python 3.6 and leverages IsThereAnyDeal API. It can be installed via pip.
+Why I wrote it mainly to mess with APIs and Python. Although I did have a genuine use case at the time that I came up with this idea, as I did not particuarly enjoy manually checking the prices.</description>
+    </item>
+    
+  </channel>
+</rss>

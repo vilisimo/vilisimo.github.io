@@ -48,12 +48,121 @@
   </url>
   
   <url>
+    <loc>https://vilisimo.github.io/tools/aws/</loc>
+    <lastmod>2018-02-03T17:18:36+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/camel/</loc>
+    <lastmod>2018-02-03T17:42:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://vilisimo.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://vilisimo.github.io/languages/css/</loc>
+    <lastmod>2018-02-03T17:18:36+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/django/</loc>
+    <lastmod>2018-02-03T17:18:36+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/docker/</loc>
+    <lastmod>2018-02-03T17:42:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/dropwizard/</loc>
+    <lastmod>2018-02-03T17:42:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/languages/groovy/</loc>
+    <lastmod>2018-02-03T17:42:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/guice/</loc>
+    <lastmod>2018-02-03T17:42:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/heroku/</loc>
+    <lastmod>2018-02-03T17:18:36+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/hsqldb/</loc>
+    <lastmod>2018-02-03T17:42:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/languages/html/</loc>
+    <lastmod>2018-02-03T17:18:36+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/hugo/</loc>
+    <lastmod>2018-02-03T17:41:14+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/languages/java/</loc>
+    <lastmod>2018-02-03T17:42:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/languages/javascript/</loc>
+    <lastmod>2018-02-03T17:18:36+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/jdbc/</loc>
+    <lastmod>2018-02-03T17:42:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/jdbi/</loc>
+    <lastmod>2018-02-03T17:42:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/jquery/</loc>
+    <lastmod>2018-02-03T17:18:36+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://vilisimo.github.io/languages/</loc>
+    <lastmod>2018-02-03T17:18:36+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/liquibase/</loc>
+    <lastmod>2018-02-03T17:42:59+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -63,12 +172,43 @@
   </url>
   
   <url>
+    <loc>https://vilisimo.github.io/tools/maven/</loc>
+    <lastmod>2018-02-03T17:42:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/languages/python/</loc>
+    <lastmod>2018-02-03T17:18:36+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/languages/sass/</loc>
+    <lastmod>2018-02-03T17:41:14+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/spock/</loc>
+    <lastmod>2018-02-03T17:42:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.github.io/tools/sqlite/</loc>
+    <lastmod>2018-02-03T17:18:36+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://vilisimo.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://vilisimo.github.io/tools/</loc>
+    <lastmod>2018-02-03T17:18:36+02:00</lastmod>
     <priority>0</priority>
   </url>
   

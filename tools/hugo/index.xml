@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Machine Code Never Lies</title>
+    <link>https://vilisimo.github.io/tools/hugo/</link>
+    <description>Recent content in Hugo on Machine Code Never Lies</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://vilisimo.github.io/tools/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blog</title>
+      <link>https://vilisimo.github.io/project/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/project/blog/</guid>
+      <description>What The current blog, built with Hugo.
+It is actually a combination of two projects, one being the blog itself, and the other being the theme that the blog uses: emperor.
+Why I had been wondering about statically generated websites for a while until one day I decided to have a go at it for an evening or two. A few months and three themes (two heavily customised and one built from scratch) later I can finally say I have a pretty firm grasp of how to cobble together a statically generated website with Hugo.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Html on Machine Code Never Lies</title>
+    <link>https://vilisimo.github.io/projects/languages/html/</link>
+    <description>Recent content in Html on Machine Code Never Lies</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://vilisimo.github.io/projects/languages/html/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blog</title>
+      <link>https://vilisimo.github.io/projects/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/projects/blog/</guid>
+      <description>What The current blog, built with Hugo.
+It is actually a combination of two projects, one being the blog itself, and the other being the theme that the blog uses: emperor.
+Why I had been wondering about statically generated websites for a while until one day I decided to have a go at it for an evening or two. A few months and three themes (two heavily customised and one built from scratch) later I can finally say I have a pretty firm grasp of how to cobble together a statically generated website with Hugo.</description>
+    </item>
+    
+    <item>
+      <title>Cookme</title>
+      <link>https://vilisimo.github.io/projects/cookme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.github.io/projects/cookme/</guid>
+      <description>What cookme serves as a simple recipe holder with a no-nonsense frontend. You can visit it here:
+https://cookmetoo.herokuapp.com/
+It takes a while to load the first time, as it is on a free Heroku tier.
+A user can browse recipes that have been added by other users. Additionally, the user can search for ingredient(s) that he/she would like to use. If there are recipes containing them, the matching recipes will be shown.</description>
+    </item>
+    
+  </channel>
+</rss>

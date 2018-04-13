@@ -1,43 +1,26 @@
 <!DOCTYPE html>
 <html lang="en-US">
 
-<head>
-	<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="referrer" content="no-referrer">
+  <head>
+    
+      <meta charset="utf-8">
 
-<meta name="description" content="steamCLI is a command line tool that allows searching for price information about games on Steam straight from the command line. It supports recent and overall ratings, current prices (on Steam), historical low price, different currencies and regions.
-The tool was written purely in Python 3.6 and leverages IsThereAnyDeal API (thanks!).">
+  <meta name="author" content="Simonas Viliūnas">
 
-<meta property="og:title" content="SteamCLI" />
-<meta property="og:description" content="steamCLI is a command line tool that allows searching for price information about games on Steam straight from the command line. It supports recent and overall ratings, current prices (on Steam), historical low price, different currencies and regions.
-The tool was written purely in Python 3.6 and leverages IsThereAnyDeal API (thanks!)." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://vilisimo.github.io/projects/steamcli/" />
+<meta name="description" content="Find relevant information about games on Steam straight from your command line">
+    
+    
+      <title>SteamCLI :: Machine Code Never Lies</title>
 
+<link rel="canonical" href="https://vilisimo.github.io/projects/steamcli/">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
 
+<link rel="stylesheet" href="https://vilisimo.github.io/css/style.css">
 
+    <link rel="shortcut icon" type="image/ico" href="https://vilisimo.github.io/img/lies.ico">
 
 
-<meta property="og:site_name" content="Machine Code Never Lies" />
-
-
-
-
-
-
-
-
-
-
-
-	<title>SteamCLI :: Machine Code Never Lies</title>
-	<link rel="canonical" href="https://vilisimo.github.io/projects/steamcli/">
-	
 
 <script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -46,137 +29,127 @@ ga('send', 'pageview');
 </script>
 <script async src='//www.google-analytics.com/analytics.js'></script>
 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
-
-
-
     
-    <link rel="stylesheet" href="https://vilisimo.github.io/css/reset.css?t=2018-02-22%2019%3a15%3a38.913806182%20%2b0200%20EET%20m%3d%2b0.030504729">
-    <link rel="stylesheet" href="https://vilisimo.github.io/css/pygments.css?t=2018-02-22%2019%3a15%3a38.913806182%20%2b0200%20EET%20m%3d%2b0.030504729">
-    <link rel="stylesheet" href="https://vilisimo.github.io/css/main.css?t=2018-02-22%2019%3a15%3a38.913806182%20%2b0200%20EET%20m%3d%2b0.030504729">
+  </head>
+  
+  <body>
+    <header id="page-header">
+      
+        <h1>
+  <a href="https://vilisimo.github.io/">Machine Code Never Lies</a>
+</h1>
+
+<nav>
+  <ul>
+    <li class="">
+        <a href="https://vilisimo.github.io/">Home</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.github.io/blog/">Blog</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.github.io/projects/">Projects</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.github.io/about/">About</a>
+      </li>
     
-        <link rel="stylesheet" href="https://vilisimo.github.io/css/custom.css?t=2018-02-22%2019%3a15%3a38.913806182%20%2b0200%20EET%20m%3d%2b0.030504729">
+  </ul>
+</nav>
+
+      
+    </header>
+
+    <main>
+      
+
+  <article class="markdown">
+    <header>
+  <h1>
+    <a href="https://vilisimo.github.io/projects/steamcli/">SteamCLI</a>
+  </h1>
+  <div class="article-info">
+    
+      <div class="languages"><a href="https://vilisimo.github.io/languages/python">python</a></div>
+          
+    
+  </div>
+</header>
+    
+  <section>
     
 
+<h2 id="what">What</h2>
 
-
-
-<link rel="shortcut icon"
-
-    href="https://vilisimo.github.io/img/lies.ico"
-
->
-
-
-
-</head>
-
-
-<body lang="en">
-
-<section class="header">
-    <div class="container">
-        <div class="content">
-            
-            <a href="https://vilisimo.github.io/"><div class="name">Machine Code Never Lies</div></a>
-            
-              <h3 class="self-intro">Read the source code and weep</h3>
-            
-            <nav>
-                <ul>
-                    <li class="nav-home "><a href="https://vilisimo.github.io/"><span>Home</span></a></li>
-                    <li class="nav-blog "><a href="https://vilisimo.github.io/blog/"><span>Blog</span></a></li>
-                    <li class="nav-projects "><a href="https://vilisimo.github.io/projects/"><span>Projects</span></a></li>
-                    <li class="nav-about "><a href="https://vilisimo.github.io/about/"><span>About</span></a></li>
-                    
-                </ul>
-            </nav>
-        </div>
-    </div>
-</section>
-
-<section class="icons">
-    <div class="container">
-        <div class="content">
-        
-            <a href="//github.com/vilisimo" target="_blank" rel="noopener"><img class="icon" src="https://vilisimo.github.io/img/github.svg" alt="github" /></a>
-        
-
-        
-
-	
-
-        
-
-        
-            <a href="//linkedin.com/in/simonasviliunas" target="_blank" rel="noopener"><img class="icon" src="https://vilisimo.github.io/img/linkedin.svg" alt="linkedin" /></a>
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-        </div>
-    </div>
-</section>
-
-<section class="main">
-    <div class="container">
-        <div class="content">
-            <div class="page-heading">
-
-    SteamCLI
-
-</div>
-
-            <div class="markdown">
-                <p><code>steamCLI</code> is a command line tool that allows searching for price information
-about games on Steam straight from the command line. It supports recent and
-overall ratings, current prices (on Steam), historical low price, different
-currencies and regions.</p>
+<p><code>steamCLI</code> is a command line tool that allows searching for prices of games
+on Steam straight from the command line. It supports recent and overall ratings,
+current prices (on Steam), historical low price, different currencies and
+regions.</p>
 
 <p>The tool was written purely in Python 3.6 and leverages
-<a href="https://isthereanydeal.com/" target="_blank">IsThereAnyDeal</a> API (thanks!).</p>
+<a href="https://isthereanydeal.com/">IsThereAnyDeal</a> API. It can be installed via
+<code>pip</code>.</p>
 
-            </div>
-        </div>
-    </div>
+<h2 id="why">Why</h2>
+
+<p>I wrote it mainly to mess with APIs and Python. Although I did have a genuine
+use case at the time that I came up with this idea, as I did not particuarly
+enjoy manually checking the prices.</p>
+
+  </section>
+
+
+    <footer>
+  <div class="date">Last edit: April 5, 2018</div>
+</footer>
+    <div class="other-entries">
+  <div class="previous-entry">
+    
+      <div>Previous entry:</div>
+      <a href="https://vilisimo.github.io/projects/cookme/">Cookme</a>
+    
+  </div>
+
+  <div class="next-entry">
+    
+      <div>Next entry:</div>
+      <a href="https://vilisimo.github.io/projects/blog/">Blog</a>
+    
+  </div>
+</div>
+  </article>
+  
+
+    </main>
+
+    <footer>
+      
+        <section id="social-icons">
+    
+        <a href="https://stackoverflow.com/users/4543382" rel="noopener" target="_blank">
+            <img src="https://vilisimo.github.io/img/stackoverflow.svg" alt="StackOverflow" />
+        </a>
+    
+    
+    
+        <a href="https://www.github.com/vilisimo" rel="noopener" target="_blank">
+            <img src="https://vilisimo.github.io/img/github.svg" alt="GitHub" />
+        </a>
+    
+
+    
+        <a href="https://www.linkedin.com/in/simonasviliunas" rel="noopener" target="_blank">
+            <img src="https://vilisimo.github.io/img/linkedin.svg" alt="LinkedIn" />
+        </a>
+    
+</section>
+<section>
+    <small>2018 • Simonas Viliūnas</small>
 </section>
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-113536003-1', 'auto');
-ga('send', 'pageview');
-</script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
-
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
-  <script type="text/javascript" src="https://vilisimo.github.io/js/custom.js"></script>
-
-
-
-
-
-</body>
+      
+    </footer>
+  </body>
+  
 </html>
-

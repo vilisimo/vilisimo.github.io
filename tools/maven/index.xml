@@ -12,10 +12,10 @@
     
     <item>
       <title>Tasks</title>
-      <link>https://vilisimo.github.io/project/tasks/</link>
+      <link>https://vilisimo.github.io/projects/tasks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://vilisimo.github.io/project/tasks/</guid>
+      <guid>https://vilisimo.github.io/projects/tasks/</guid>
       <description>What Every serious programmer secretly craves to program todo applications. tasks quenches this burning desire. It is a command line tool to enable creating and keeping track of tasks that need to be done.
 Why The main reason for this project was to have a simple project that allowed some degree of experimentation with various Java-based technologies. In fact, it was the first project that I used Java 9 with (mm, Map.</description>
     </item>

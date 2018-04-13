@@ -12,10 +12,10 @@
     
     <item>
       <title>Cookme</title>
-      <link>https://vilisimo.github.io/project/cookme/</link>
+      <link>https://vilisimo.github.io/projects/cookme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://vilisimo.github.io/project/cookme/</guid>
+      <guid>https://vilisimo.github.io/projects/cookme/</guid>
       <description>What cookme serves as a simple recipe holder with a no-nonsense frontend. You can visit it here:
 https://cookmetoo.herokuapp.com/
 It takes a while to load the first time, as it is on a free Heroku tier.

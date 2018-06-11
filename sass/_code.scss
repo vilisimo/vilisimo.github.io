@@ -6,3 +6,8 @@ pre, .highlight pre {
     margin: 0;
     padding: $px16 $px12;
  }
+
+ p > code {
+     background-color: #f0f0f0;
+     padding: 2px 5px;
+ }

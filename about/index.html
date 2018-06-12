@@ -24,9 +24,13 @@
 
 
 <script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-113536003-1', 'auto');
-ga('send', 'pageview');
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-113536003-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 <script async src='//www.google-analytics.com/analytics.js'></script>
 
@@ -65,8 +69,9 @@ ga('send', 'pageview');
       
 
   
-    <section>
-      <p>I work as a software developer. I have masters in Software Development and an
+    
+      <section>
+        <p>I work as a software developer. I have masters in Software Development and an
 undergraduate degree in Psychology (both awarded by University of Glasgow).</p>
 
 <p>At work, I&rsquo;m mostly doing backend stuff. At the moment, I am working with Java
@@ -81,9 +86,10 @@ CSS, HTML, and JavaScript. Currently, though, I am playing around with Dart
 and Flutter by making an app to track my own expenses. You can follow my
 progress on <a href="https://github.com/vilisimo/sink">GitHub</a>.</p>
 
-    </section>
+      </section>
+    
   
-  
+
   
 
     </main>

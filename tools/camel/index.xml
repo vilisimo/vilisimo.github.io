@@ -6,6 +6,7 @@
     <description>Recent content in Camel on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0300</lastBuildDate>
     
 	<atom:link href="https://vilisimo.github.io/tools/camel/index.xml" rel="self" type="application/rss+xml" />
     
@@ -13,7 +14,7 @@
     <item>
       <title>Books CRUD</title>
       <link>https://vilisimo.github.io/projects/books-crud/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
       <guid>https://vilisimo.github.io/projects/books-crud/</guid>
       <description>What The project is a simple proof of concept CRUD app.

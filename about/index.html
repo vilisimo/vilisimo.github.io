@@ -23,7 +23,7 @@
 
 
 
-<script>
+<script type="application/javascript">
 var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
 var doNotTrack = (dnt == "1" || dnt == "yes");
 if (!doNotTrack) {
@@ -44,6 +44,32 @@ if (!doNotTrack) {
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
+<script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "Blog",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https://vilisimo.github.io/"
+      },
+      "articleSection" : "about",
+      "name" : "",
+      "headline" : "",
+      "description" : "",
+      "inLanguage" : "en-US",
+      "author" : "Simonas Viliūnas",
+      "creator" : "Simonas Viliūnas",
+      "publisher": "Simonas Viliūnas",
+      "accountablePerson" : "Simonas Viliūnas",
+      "copyrightHolder" : "Simonas Viliūnas",
+      "copyrightYear" : "2018",
+      "datePublished": "2018-06-02 15:40:21 &#43;0300 EEST",
+      "dateModified" : "2018-06-02 15:40:21 &#43;0300 EEST",
+      "url" : "https://vilisimo.github.io/about/",
+      "wordCount" : "140",
+      "keywords" : [ "Blog" ]
+  }
+  </script>
     
   </head>
   
@@ -79,9 +105,8 @@ if (!doNotTrack) {
       
 
   
-    
-      <section>
-        <p>I work as a software developer. I have masters in Software Development and an
+    <section>
+      <p>I work as a software developer. I have masters in Software Development and an
 undergraduate degree in Psychology (both awarded by University of Glasgow).</p>
 
 <p>At work, I&rsquo;m mostly doing backend stuff. At the moment, I am working with Java
@@ -96,8 +121,7 @@ CSS, HTML, and JavaScript. Currently, though, I am playing around with Dart
 and Flutter by making an app to track my own expenses. You can follow my
 progress on <a href="https://github.com/vilisimo/sink">GitHub</a>.</p>
 
-      </section>
-    
+    </section>
   
 
   

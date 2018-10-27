@@ -6,6 +6,7 @@
     <description>Recent content in Sqlite on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0300</lastBuildDate>
     
 	<atom:link href="https://vilisimo.github.io/tools/sqlite/index.xml" rel="self" type="application/rss+xml" />
     
@@ -13,7 +14,7 @@
     <item>
       <title>Cookme</title>
       <link>https://vilisimo.github.io/projects/cookme/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
       <guid>https://vilisimo.github.io/projects/cookme/</guid>
       <description>What cookme serves as a simple recipe holder with a no-nonsense frontend. You can visit it here:

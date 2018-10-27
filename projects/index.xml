@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Machine Code Never Lies</title>
+    <title>Personal Projects on Machine Code Never Lies</title>
     <link>https://vilisimo.github.io/projects/</link>
-    <description>Recent content on Machine Code Never Lies</description>
+    <description>Recent content in Personal Projects on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Apr 2018 21:59:25 +0300</lastBuildDate>
@@ -14,7 +14,7 @@
     <item>
       <title>Blog</title>
       <link>https://vilisimo.github.io/projects/blog/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
       <guid>https://vilisimo.github.io/projects/blog/</guid>
       <description>What The current blog, built with Hugo.
@@ -25,7 +25,7 @@ Why I had been wondering about statically generated websites for a while until o
     <item>
       <title>SteamCLI</title>
       <link>https://vilisimo.github.io/projects/steamcli/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
       <guid>https://vilisimo.github.io/projects/steamcli/</guid>
       <description>What steamCLI is a command line tool that allows searching for game prices on Steam straight from the command line. It supports recent and overall ratings, current prices (on Steam), historical low price, different currencies and regions.
@@ -36,7 +36,7 @@ Why I wrote it mainly to mess with APIs and Python. Although I did have a genuin
     <item>
       <title>Cookme</title>
       <link>https://vilisimo.github.io/projects/cookme/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
       <guid>https://vilisimo.github.io/projects/cookme/</guid>
       <description>What cookme serves as a simple recipe holder with a no-nonsense frontend. You can visit it here:
@@ -48,7 +48,7 @@ A user can browse recipes that have been added by the other users. Also, the use
     <item>
       <title>Emperor</title>
       <link>https://vilisimo.github.io/projects/emperor/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
       <guid>https://vilisimo.github.io/projects/emperor/</guid>
       <description>What &amp;ldquo;Emeperor&amp;rdquo; is a theme for Hugo-based websites. It is primarily aimed at blogs and people who want to showcase their projects.
@@ -58,7 +58,7 @@ Why The main reason to create the theme was lack of themes that really caught my
     <item>
       <title>Tasks</title>
       <link>https://vilisimo.github.io/projects/tasks/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
       <guid>https://vilisimo.github.io/projects/tasks/</guid>
       <description>What Every serious programmer secretly craves to program todo applications. tasks quenches this burning desire. It is a command line tool to enable creating and keeping track of tasks that need to be done.
@@ -68,7 +68,7 @@ Why The main reason for this project was to have a simple project that allowed s
     <item>
       <title>Tables</title>
       <link>https://vilisimo.github.io/projects/tables/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
       <guid>https://vilisimo.github.io/projects/tables/</guid>
       <description>What tables is a tool to build a table and print it to a terminal. It was extracted from tasks project, when printing a proper table proved to be more tricky than the actual project itself.
@@ -78,7 +78,7 @@ Why There was no intention to write anything related to the tables when I starte
     <item>
       <title>Books CRUD</title>
       <link>https://vilisimo.github.io/projects/books-crud/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
       <guid>https://vilisimo.github.io/projects/books-crud/</guid>
       <description>What The project is a simple proof of concept CRUD app.

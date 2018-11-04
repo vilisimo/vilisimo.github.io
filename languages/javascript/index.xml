@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Javascript on Machine Code Never Lies</title>
-    <link>https://vilisimo.github.io/languages/javascript/</link>
+    <link>https://vilisimo.com/languages/javascript/</link>
     <description>Recent content in Javascript on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0300</lastBuildDate>
     
-	<atom:link href="https://vilisimo.github.io/languages/javascript/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://vilisimo.com/languages/javascript/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Cookme</title>
-      <link>https://vilisimo.github.io/projects/cookme/</link>
+      <link>https://vilisimo.com/projects/cookme/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/projects/cookme/</guid>
+      <guid>https://vilisimo.com/projects/cookme/</guid>
       <description>What cookme serves as a simple recipe holder with a no-nonsense frontend. You can visit it here:
 https://cookmetoo.herokuapp.com/
 It takes a while to load the first time, as it is on a free Heroku tier.

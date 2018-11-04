@@ -2,147 +2,147 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tools on Machine Code Never Lies</title>
-    <link>https://vilisimo.github.io/tools/</link>
+    <link>https://vilisimo.com/tools/</link>
     <description>Recent content in Tools on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0300</lastBuildDate>
     
-	<atom:link href="https://vilisimo.github.io/tools/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://vilisimo.com/tools/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Aws</title>
-      <link>https://vilisimo.github.io/tools/aws/</link>
+      <link>https://vilisimo.com/tools/aws/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/aws/</guid>
+      <guid>https://vilisimo.com/tools/aws/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Camel</title>
-      <link>https://vilisimo.github.io/tools/camel/</link>
+      <link>https://vilisimo.com/tools/camel/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/camel/</guid>
+      <guid>https://vilisimo.com/tools/camel/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Django</title>
-      <link>https://vilisimo.github.io/tools/django/</link>
+      <link>https://vilisimo.com/tools/django/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/django/</guid>
+      <guid>https://vilisimo.com/tools/django/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>https://vilisimo.github.io/tools/docker/</link>
+      <link>https://vilisimo.com/tools/docker/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/docker/</guid>
+      <guid>https://vilisimo.com/tools/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dropwizard</title>
-      <link>https://vilisimo.github.io/tools/dropwizard/</link>
+      <link>https://vilisimo.com/tools/dropwizard/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/dropwizard/</guid>
+      <guid>https://vilisimo.com/tools/dropwizard/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Guice</title>
-      <link>https://vilisimo.github.io/tools/guice/</link>
+      <link>https://vilisimo.com/tools/guice/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/guice/</guid>
+      <guid>https://vilisimo.com/tools/guice/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Heroku</title>
-      <link>https://vilisimo.github.io/tools/heroku/</link>
+      <link>https://vilisimo.com/tools/heroku/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/heroku/</guid>
+      <guid>https://vilisimo.com/tools/heroku/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hsqldb</title>
-      <link>https://vilisimo.github.io/tools/hsqldb/</link>
+      <link>https://vilisimo.com/tools/hsqldb/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/hsqldb/</guid>
+      <guid>https://vilisimo.com/tools/hsqldb/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://vilisimo.github.io/tools/hugo/</link>
+      <link>https://vilisimo.com/tools/hugo/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/hugo/</guid>
+      <guid>https://vilisimo.com/tools/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jdbi</title>
-      <link>https://vilisimo.github.io/tools/jdbi/</link>
+      <link>https://vilisimo.com/tools/jdbi/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/jdbi/</guid>
+      <guid>https://vilisimo.com/tools/jdbi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jquery</title>
-      <link>https://vilisimo.github.io/tools/jquery/</link>
+      <link>https://vilisimo.com/tools/jquery/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/jquery/</guid>
+      <guid>https://vilisimo.com/tools/jquery/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Liquibase</title>
-      <link>https://vilisimo.github.io/tools/liquibase/</link>
+      <link>https://vilisimo.com/tools/liquibase/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/liquibase/</guid>
+      <guid>https://vilisimo.com/tools/liquibase/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Maven</title>
-      <link>https://vilisimo.github.io/tools/maven/</link>
+      <link>https://vilisimo.com/tools/maven/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/maven/</guid>
+      <guid>https://vilisimo.com/tools/maven/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Spock</title>
-      <link>https://vilisimo.github.io/tools/spock/</link>
+      <link>https://vilisimo.com/tools/spock/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/spock/</guid>
+      <guid>https://vilisimo.com/tools/spock/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sqlite</title>
-      <link>https://vilisimo.github.io/tools/sqlite/</link>
+      <link>https://vilisimo.com/tools/sqlite/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/tools/sqlite/</guid>
+      <guid>https://vilisimo.com/tools/sqlite/</guid>
       <description></description>
     </item>
     

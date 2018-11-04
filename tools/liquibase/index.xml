@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Liquibase on Machine Code Never Lies</title>
-    <link>https://vilisimo.github.io/tools/liquibase/</link>
+    <link>https://vilisimo.com/tools/liquibase/</link>
     <description>Recent content in Liquibase on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0300</lastBuildDate>
     
-	<atom:link href="https://vilisimo.github.io/tools/liquibase/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://vilisimo.com/tools/liquibase/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Tasks</title>
-      <link>https://vilisimo.github.io/projects/tasks/</link>
+      <link>https://vilisimo.com/projects/tasks/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/projects/tasks/</guid>
+      <guid>https://vilisimo.com/projects/tasks/</guid>
       <description>What Every serious programmer secretly craves to program todo applications. tasks quenches this burning desire. It is a command line tool to enable creating and keeping track of tasks that need to be done.
 Why The main reason for this project was to have a simple project that allowed some degree of experimentation with various Java-based technologies. In fact, it was the first project that I used Java 9 with (mm, Map.</description>
     </item>

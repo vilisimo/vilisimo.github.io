@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Machine Code Never Lies</title>
-    <link>https://vilisimo.github.io/</link>
+    <link>https://vilisimo.com/</link>
     <description>Recent content on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 08 Feb 2018 19:53:17 +0200</lastBuildDate>
     
-	<atom:link href="https://vilisimo.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://vilisimo.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Blog</title>
-      <link>https://vilisimo.github.io/projects/blog/</link>
+      <link>https://vilisimo.com/projects/blog/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/projects/blog/</guid>
+      <guid>https://vilisimo.com/projects/blog/</guid>
       <description>What The current blog, built with Hugo.
 It is actually a combination of two projects, one being the blog itself, and the other being the theme that the blog uses: emperor.
 Why I had been wondering about statically generated websites for a while until one day I decided to have a go at it for an evening or two. A few months and three themes (two heavily customised and one built from scratch) later I can finally say I have a pretty firm grasp of how to cobble together a statically generated website with Hugo.</description>
@@ -24,10 +24,10 @@ Why I had been wondering about statically generated websites for a while until o
     
     <item>
       <title>SteamCLI</title>
-      <link>https://vilisimo.github.io/projects/steamcli/</link>
+      <link>https://vilisimo.com/projects/steamcli/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/projects/steamcli/</guid>
+      <guid>https://vilisimo.com/projects/steamcli/</guid>
       <description>What steamCLI is a command line tool that allows searching for game prices on Steam straight from the command line. It supports recent and overall ratings, current prices (on Steam), historical low price, different currencies and regions.
 The tool was written purely in Python 3.6 and leverages IsThereAnyDeal API. It can be installed via pip.
 Why I wrote it mainly to mess with APIs and Python. Although I did have a genuine use case at the time that I came up with this idea, as I did not particuarly enjoy manually checking the prices.</description>
@@ -35,10 +35,10 @@ Why I wrote it mainly to mess with APIs and Python. Although I did have a genuin
     
     <item>
       <title>Cookme</title>
-      <link>https://vilisimo.github.io/projects/cookme/</link>
+      <link>https://vilisimo.com/projects/cookme/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/projects/cookme/</guid>
+      <guid>https://vilisimo.com/projects/cookme/</guid>
       <description>What cookme serves as a simple recipe holder with a no-nonsense frontend. You can visit it here:
 https://cookmetoo.herokuapp.com/
 It takes a while to load the first time, as it is on a free Heroku tier.
@@ -47,50 +47,50 @@ A user can browse recipes that have been added by the other users. Also, the use
     
     <item>
       <title>Emperor</title>
-      <link>https://vilisimo.github.io/projects/emperor/</link>
+      <link>https://vilisimo.com/projects/emperor/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/projects/emperor/</guid>
+      <guid>https://vilisimo.com/projects/emperor/</guid>
       <description>What &amp;ldquo;Emeperor&amp;rdquo; is a theme for Hugo-based websites. It is primarily aimed at blogs and people who want to showcase their projects.
 Why The main reason to create the theme was lack of themes that really caught my eye. Although Emperor may not be the prettiest theme, it is a theme that I, having created it, know inside out, and that is simple and easy to change. Hence, I have a full control of how it looks.</description>
     </item>
     
     <item>
       <title>Tasks</title>
-      <link>https://vilisimo.github.io/projects/tasks/</link>
+      <link>https://vilisimo.com/projects/tasks/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/projects/tasks/</guid>
+      <guid>https://vilisimo.com/projects/tasks/</guid>
       <description>What Every serious programmer secretly craves to program todo applications. tasks quenches this burning desire. It is a command line tool to enable creating and keeping track of tasks that need to be done.
 Why The main reason for this project was to have a simple project that allowed some degree of experimentation with various Java-based technologies. In fact, it was the first project that I used Java 9 with (mm, Map.</description>
     </item>
     
     <item>
       <title>Tables</title>
-      <link>https://vilisimo.github.io/projects/tables/</link>
+      <link>https://vilisimo.com/projects/tables/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/projects/tables/</guid>
+      <guid>https://vilisimo.com/projects/tables/</guid>
       <description>What tables is a tool to build a table and print it to a terminal. It was extracted from tasks project, when printing a proper table proved to be more tricky than the actual project itself.
 Why There was no intention to write anything related to the tables when I started dabbling with tasks. However, once I started thinking about how to approach printing multiline tables to a terminal it quickly became clear that a few newlines here and there would not suffice.</description>
     </item>
     
     <item>
       <title>Books CRUD</title>
-      <link>https://vilisimo.github.io/projects/books-crud/</link>
+      <link>https://vilisimo.com/projects/books-crud/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/projects/books-crud/</guid>
+      <guid>https://vilisimo.com/projects/books-crud/</guid>
       <description>What The project is a simple proof of concept CRUD app.
 Why The main motivation for the app was to see what it feels like when half of the Spring&amp;rsquo;s magic is stripped away. And boy does the Spring project take care of a lot of things.</description>
     </item>
     
     <item>
       <title>Making History</title>
-      <link>https://vilisimo.github.io/blog/making-history/</link>
+      <link>https://vilisimo.com/blog/making-history/</link>
       <pubDate>Mon, 11 Jun 2018 23:43:08 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/blog/making-history/</guid>
+      <guid>https://vilisimo.com/blog/making-history/</guid>
       <description>History  History will be kind to me for I intend to write it. - Winston Churchill (not really)
  As in real life, history in software development is important for several reasons. The first one is to have someone to blame when things go wrong. Once we&amp;rsquo;ve done that, it is also useful for figuring out how development has evolved, what changes were introduced, when they were introduced, and what was the reason for them.</description>
     </item>

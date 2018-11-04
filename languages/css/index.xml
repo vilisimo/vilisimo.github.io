@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Css on Machine Code Never Lies</title>
-    <link>https://vilisimo.github.io/languages/css/</link>
+    <link>https://vilisimo.com/languages/css/</link>
     <description>Recent content in Css on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0300</lastBuildDate>
     
-	<atom:link href="https://vilisimo.github.io/languages/css/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://vilisimo.com/languages/css/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Blog</title>
-      <link>https://vilisimo.github.io/projects/blog/</link>
+      <link>https://vilisimo.com/projects/blog/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/projects/blog/</guid>
+      <guid>https://vilisimo.com/projects/blog/</guid>
       <description>What The current blog, built with Hugo.
 It is actually a combination of two projects, one being the blog itself, and the other being the theme that the blog uses: emperor.
 Why I had been wondering about statically generated websites for a while until one day I decided to have a go at it for an evening or two. A few months and three themes (two heavily customised and one built from scratch) later I can finally say I have a pretty firm grasp of how to cobble together a statically generated website with Hugo.</description>
@@ -24,10 +24,10 @@ Why I had been wondering about statically generated websites for a while until o
     
     <item>
       <title>Cookme</title>
-      <link>https://vilisimo.github.io/projects/cookme/</link>
+      <link>https://vilisimo.com/projects/cookme/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/projects/cookme/</guid>
+      <guid>https://vilisimo.com/projects/cookme/</guid>
       <description>What cookme serves as a simple recipe holder with a no-nonsense frontend. You can visit it here:
 https://cookmetoo.herokuapp.com/
 It takes a while to load the first time, as it is on a free Heroku tier.
@@ -36,10 +36,10 @@ A user can browse recipes that have been added by the other users. Also, the use
     
     <item>
       <title>Emperor</title>
-      <link>https://vilisimo.github.io/projects/emperor/</link>
+      <link>https://vilisimo.com/projects/emperor/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/projects/emperor/</guid>
+      <guid>https://vilisimo.com/projects/emperor/</guid>
       <description>What &amp;ldquo;Emeperor&amp;rdquo; is a theme for Hugo-based websites. It is primarily aimed at blogs and people who want to showcase their projects.
 Why The main reason to create the theme was lack of themes that really caught my eye. Although Emperor may not be the prettiest theme, it is a theme that I, having created it, know inside out, and that is simple and easy to change. Hence, I have a full control of how it looks.</description>
     </item>

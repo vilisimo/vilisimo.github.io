@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git on Machine Code Never Lies</title>
-    <link>https://vilisimo.github.io/categories/git/</link>
+    <link>https://vilisimo.com/categories/git/</link>
     <description>Recent content in Git on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 11 Jun 2018 23:43:08 +0300</lastBuildDate>
     
-	<atom:link href="https://vilisimo.github.io/categories/git/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://vilisimo.com/categories/git/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Making History</title>
-      <link>https://vilisimo.github.io/blog/making-history/</link>
+      <link>https://vilisimo.com/blog/making-history/</link>
       <pubDate>Mon, 11 Jun 2018 23:43:08 +0300</pubDate>
       
-      <guid>https://vilisimo.github.io/blog/making-history/</guid>
+      <guid>https://vilisimo.com/blog/making-history/</guid>
       <description>History  History will be kind to me for I intend to write it. - Winston Churchill (not really)
  As in real life, history in software development is important for several reasons. The first one is to have someone to blame when things go wrong. Once we&amp;rsquo;ve done that, it is also useful for figuring out how development has evolved, what changes were introduced, when they were introduced, and what was the reason for them.</description>
     </item>

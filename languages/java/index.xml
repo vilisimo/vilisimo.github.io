@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java on Machine Code Never Lies</title>
+    <title>java on Machine Code Never Lies</title>
     <link>https://vilisimo.com/languages/java/</link>
-    <description>Recent content in Java on Machine Code Never Lies</description>
+    <description>Recent content in java on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0300</lastBuildDate>
@@ -12,13 +12,13 @@
     
     
     <item>
-      <title>Books CRUD</title>
-      <link>https://vilisimo.com/projects/books-crud/</link>
+      <title>Tasks</title>
+      <link>https://vilisimo.com/projects/tasks/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.com/projects/books-crud/</guid>
-      <description>What The project is a simple proof of concept CRUD app.
-Why The main motivation for the app was to see what it feels like when half of the Spring&amp;rsquo;s magic is stripped away. And boy does the Spring project take care of a lot of things.</description>
+      <guid>https://vilisimo.com/projects/tasks/</guid>
+      <description>What Every serious programmer secretly craves to program todo applications. tasks quenches this burning desire. It is a command line tool to enable creating and keeping track of tasks that need to be done.
+Why The main reason for this project was to have a simple project that allowed some degree of experimentation with various Java-based technologies. In fact, it was the first project that I used Java 9 with (mm, Map.</description>
     </item>
     
     <item>
@@ -32,13 +32,13 @@ Why There was no intention to write anything related to the tables when I starte
     </item>
     
     <item>
-      <title>Tasks</title>
-      <link>https://vilisimo.com/projects/tasks/</link>
+      <title>Books CRUD</title>
+      <link>https://vilisimo.com/projects/books-crud/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0300</pubDate>
       
-      <guid>https://vilisimo.com/projects/tasks/</guid>
-      <description>What Every serious programmer secretly craves to program todo applications. tasks quenches this burning desire. It is a command line tool to enable creating and keeping track of tasks that need to be done.
-Why The main reason for this project was to have a simple project that allowed some degree of experimentation with various Java-based technologies. In fact, it was the first project that I used Java 9 with (mm, Map.</description>
+      <guid>https://vilisimo.com/projects/books-crud/</guid>
+      <description>What The project is a simple proof of concept CRUD app.
+Why The main motivation for the app was to see what it feels like when half of the Spring&amp;rsquo;s magic is stripped away. And boy does the Spring project take care of a lot of things.</description>
     </item>
     
   </channel>

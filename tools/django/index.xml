@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Django on Machine Code Never Lies</title>
+    <title>django on Machine Code Never Lies</title>
     <link>https://vilisimo.com/tools/django/</link>
-    <description>Recent content in Django on Machine Code Never Lies</description>
+    <description>Recent content in django on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0300</lastBuildDate>

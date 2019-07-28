@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dart on Machine Code Never Lies</title>
+    <link>https://vilisimo.com/languages/dart/</link>
+    <description>Recent content in dart on Machine Code Never Lies</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 May 2018 19:16:00 +0300</lastBuildDate>
+    
+	<atom:link href="https://vilisimo.com/languages/dart/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sink</title>
+      <link>https://vilisimo.com/projects/sink/</link>
+      <pubDate>Sat, 12 May 2018 19:16:00 +0300</pubDate>
+      
+      <guid>https://vilisimo.com/projects/sink/</guid>
+      <description>What Sink is a personal finance tracker that helps to track your expenses. It can be used to get a better overview of what exactly the money is being spent on. On the other hand, it&amp;rsquo;s still in (slow) development and not it is not available in either of the app stores, so you&amp;rsquo;ll probably want something else for now.
+Why I began coding it to get a grip on Flutter, at the time a new and shiny tool that was flying mostly under the radar.</description>
+    </item>
+    
+  </channel>
+</rss>

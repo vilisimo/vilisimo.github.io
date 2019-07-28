@@ -8,12 +8,12 @@
 
   <meta name="author" content="Simonas Viliūnas">
 
-<meta name="description" content="A list of personal projects I&#39;ve been involved in">
+<meta name="description" content="Find out exactly how bad your financial situation is">
     
     
-      <title>Projects :: Machine Code Never Lies</title>
+      <title>Sink :: Machine Code Never Lies</title>
 
-<link rel="canonical" href="https://vilisimo.com/projects/">
+<link rel="canonical" href="https://vilisimo.com/projects/sink/">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
 
@@ -53,9 +53,9 @@ if (!doNotTrack) {
            "@id": "https:\/\/vilisimo.com\/"
       },
       "articleSection" : "projects",
-      "name" : "Personal Projects",
-      "headline" : "Personal Projects",
-      "description" : "A list of personal projects I\x27ve been involved in",
+      "name" : "Sink",
+      "headline" : "Sink",
+      "description" : "Find out exactly how bad your financial situation is",
       "inLanguage" : "en-US",
       "author" : {
         "@type": "Person",
@@ -78,10 +78,10 @@ if (!doNotTrack) {
         "name": "Simonas Viliūnas"
       },
       "copyrightYear" : "2018",
-      "datePublished": "2018-06-20T00:00:00+03:00",
-      "dateModified" : "2018-06-20T00:00:00+03:00",
-      "url" : "https:\/\/vilisimo.com\/projects\/",
-      "wordCount" : "8",
+      "datePublished": "2018-05-12T19:16:00+03:00",
+      "dateModified" : "2018-05-12T19:16:00+03:00",
+      "url" : "https:\/\/vilisimo.com\/projects\/sink\/",
+      "wordCount" : "216",
       "keywords" : [ "Blog" ]
   }
   </script>
@@ -103,7 +103,7 @@ if (!doNotTrack) {
     <li class="">
         <a href="https://vilisimo.com/blog/">Blog</a>
       </li>
-    <li class="nav-current">
+    <li class="">
         <a href="https://vilisimo.com/projects/">Projects</a>
       </li>
     <li class="">
@@ -119,87 +119,86 @@ if (!doNotTrack) {
     <main>
       
 
-  
-    <section>
-      <p>Projects that I have been dabbling with recently.</p>
-
-    </section>
-  
-  
-  
-    <section><ul class="entries"><li class="project">
-  <span class="project-title">
-    <a href="https://vilisimo.com/projects/blog/">Blog</a>
-  </span>
-  <span class="project-description">  
-    
-      <p>Because there aren&#39;t enough blogs on the Internet</p>
-    
-  </span>
-</li></ul><ul class="entries"><li class="project">
-  <span class="project-title">
+  <article class="markdown">
+    <header>
+  <h1>
     <a href="https://vilisimo.com/projects/sink/">Sink</a>
-  </span>
-  <span class="project-description">  
+  </h1>
+  <div class="article-info">
     
-      <p>Find out exactly how bad your financial situation is</p>
+      <div class="languages"><a href="https://vilisimo.com/languages/dart">dart</a></div>
+          
     
-  </span>
-</li></ul><ul class="entries"><li class="project">
-  <span class="project-title">
-    <a href="https://vilisimo.com/projects/steamcli/">SteamCLI</a>
-  </span>
-  <span class="project-description">  
+      <div class="taxonomies"><a href="https://vilisimo.com/tools/flutter">flutter</a><a href="https://vilisimo.com/tools/firebase">firebase</a><a href="https://vilisimo.com/tools/flutter-redux">flutter redux</a></div>
     
-      <p>Find relevant information about games on Steam straight from your command line</p>
+  </div>
+</header>
     
-  </span>
-</li></ul><ul class="entries"><li class="project">
-  <span class="project-title">
-    <a href="https://vilisimo.com/projects/cookme/">Cookme</a>
-  </span>
-  <span class="project-description">  
+  <section>
     
-      <p>When you have no idea what to do with all those ingredients in the fridge</p>
+
+<h2 id="what">What</h2>
+
+<p><code>Sink</code> is a personal finance tracker that helps to track your expenses. It
+can be used to get a better overview of what exactly the money is being spent
+on. On the other hand, it&rsquo;s still in (slow) development and not it is not
+available in either of the app stores, so you&rsquo;ll probably want something else
+for now.</p>
+
+<h2 id="why">Why</h2>
+
+<p>I began coding it to get a grip on Flutter, at the time a new and shiny tool
+that was flying mostly under the radar. I&rsquo;ve had a lot of fun learning Flutter
+and Dart, and I hope to eventually complete the project properly.</p>
+
+<h2 id="screens">Screens</h2>
+
+<h3 id="main-screen">Main screen</h3>
+
+<p><img src="https://raw.githubusercontent.com/vilisimo/sink/master/screens/entries.png" alt="Main screen" title="Main screen of Sink" /></p>
+
+<h3 id="breakdowns">Breakdowns</h3>
+
+<p>A breakdown showing how much (and on what) was spent in May:</p>
+
+<p><img src="https://raw.githubusercontent.com/vilisimo/sink/master/screens/month-summary.png" alt="Month's breakdown" title="Monthly breakdown" /></p>
+
+<p>A breakdown showing 2018-2019 expenses. User can click on the month of
+interest to see a detailed breakdown for that month.</p>
+
+<p><img src="https://raw.githubusercontent.com/vilisimo/sink/master/screens/year-summary.png" alt="Year's breakdown" title="Year's breakdown" /></p>
+
+<p>It&rsquo;s worth noting that while I initially experimented with
+<a href="https://pub.dev/packages/charts_flutter">Google&rsquo;s charts</a>,
+I found them to be a bit bland and uninspiring at that point of time. Hence,
+the charts that are shown here are handcrafted, with the exception of circular
+chart, which uses
+<a href="https://pub.dev/packages/flutter_circular_chart">flutter_circular_chart</a>
+package. This proved to be much easier than expected, which just goes to show
+that you don&rsquo;t need to be a genius to get a half decent result on Flutter.</p>
+
+  </section>
+
+
+    <footer>
+  <div class="date">Last edit: May 12, 2018</div>
+</footer>
+    <div class="other-entries">
+  <div class="previous-entry">
     
-  </span>
-</li></ul><ul class="entries"><li class="project">
-  <span class="project-title">
-    <a href="https://vilisimo.com/projects/emperor/">Emperor</a>
-  </span>
-  <span class="project-description">  
+      <div>Previous entry:</div>
+      <a href="https://vilisimo.com/projects/steamcli/">SteamCLI</a>
     
-      <p>Because there aren&#39;t enough Hugo themes</p>
+  </div>
+
+  <div class="next-entry">
     
-  </span>
-</li></ul><ul class="entries"><li class="project">
-  <span class="project-title">
-    <a href="https://vilisimo.com/projects/tasks/">Tasks</a>
-  </span>
-  <span class="project-description">  
+      <div>Next entry:</div>
+      <a href="https://vilisimo.com/projects/blog/">Blog</a>
     
-      <p>Create a list of tasks to feign being organised</p>
-    
-  </span>
-</li></ul><ul class="entries"><li class="project">
-  <span class="project-title">
-    <a href="https://vilisimo.com/projects/tables/">Tables</a>
-  </span>
-  <span class="project-description">  
-    
-      <p>Because each command line interface needs more tables</p>
-    
-  </span>
-</li></ul><ul class="entries"><li class="project">
-  <span class="project-title">
-    <a href="https://vilisimo.com/projects/books-crud/">Books CRUD</a>
-  </span>
-  <span class="project-description">  
-    
-      <p>Mastering Java ecosystem, one CRUD at a time</p>
-    
-  </span>
-</li></ul></section>
+  </div>
+</div>
+  </article>
   
 
     </main>

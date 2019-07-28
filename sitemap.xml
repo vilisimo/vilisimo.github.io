@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>https://vilisimo.com/projects/sink/</loc>
+    <lastmod>2018-05-12T19:16:00+03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://vilisimo.com/projects/steamcli/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
   </url>
@@ -48,6 +53,18 @@
   </url>
   
   <url>
+    <loc>https://vilisimo.com/languages/css/</loc>
+    <lastmod>2018-10-27T16:03:18+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.com/languages/html/</loc>
+    <lastmod>2018-10-27T16:03:18+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://vilisimo.com/languages/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
     <priority>0</priority>
@@ -64,6 +81,12 @@
   </url>
   
   <url>
+    <loc>https://vilisimo.com/languages/sass/</loc>
+    <lastmod>2018-10-27T16:03:18+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://vilisimo.com/tools/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
     <priority>0</priority>
@@ -77,12 +100,6 @@
   
   <url>
     <loc>https://vilisimo.com/tools/camel/</loc>
-    <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://vilisimo.com/languages/css/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
     <priority>0</priority>
   </url>
@@ -125,12 +142,6 @@
   
   <url>
     <loc>https://vilisimo.com/tools/hsqldb/</loc>
-    <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://vilisimo.com/languages/html/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
     <priority>0</priority>
   </url>
@@ -184,12 +195,6 @@
   </url>
   
   <url>
-    <loc>https://vilisimo.com/languages/sass/</loc>
-    <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://vilisimo.com/tools/spock/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
     <priority>0</priority>
@@ -215,6 +220,30 @@
   <url>
     <loc>https://vilisimo.com/categories/git/</loc>
     <lastmod>2018-06-11T23:44:02+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.com/languages/dart/</loc>
+    <lastmod>2018-05-12T19:16:00+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.com/tools/firebase/</loc>
+    <lastmod>2018-05-12T19:16:00+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.com/tools/flutter/</loc>
+    <lastmod>2018-05-12T19:16:00+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vilisimo.com/tools/flutter-redux/</loc>
+    <lastmod>2018-05-12T19:16:00+03:00</lastmod>
     <priority>0</priority>
   </url>
   

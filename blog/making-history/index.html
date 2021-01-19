@@ -133,61 +133,35 @@ if (!doNotTrack) {
 </header>
     
   <section>
-    
-
-<h2 id="history">History</h2>
-
+    <h2 id="history">History</h2>
 <blockquote>
 <p>History will be kind to me for I intend to write it. - Winston Churchill (not really)</p>
 </blockquote>
-
 <p>As in real life, history in software development is important for several reasons. The first one is to have someone to blame when things go wrong. Once we&rsquo;ve done that, it is also useful for figuring out how development has evolved, what changes were introduced, when they were introduced, and what was the reason for them. To achieve it, the first tool to reach for is <code>git log</code>. Then, <code>git diff commit_hash^ commit_hash</code> can usually solidify our understanding by showing what new stuff was introduced for that shiny new feature and/or what might have gone wrong.</p>
-
 <p>Real life is messy, though. As in world history, <code>git log</code> is usually chaotic. Just because it&rsquo;s written down doesn&rsquo;t mean it makes much sense. It doesn&rsquo;t even mean that it is related to the changes at all. Quite often you stare at the git history, and the history stares back at you with a mischevious glint in its eye.</p>
-
 <p>This will not do.</p>
-
 <h2 id="atomic-commits">Atomic Commits</h2>
-
 <blockquote>
-<p><strong><em>atomic</em></strong> - forming a single irreducible unit or component in a larger system.</p>
+<p><em><strong>atomic</strong></em> - forming a single irreducible unit or component in a larger system.</p>
 </blockquote>
-
 <p>One of the best ways to avoid the sloppy git history is to aim for <strong><em>atomic</em></strong> commits. Easy enough. But what the hell is atomic commit?</p>
-
 <p>Simply put, atomic commit consists <em>only</em> of the changes that are absolutely necessary for what the commit is about - nothing more, nothing less. Taking anything away would break the functionality. Adding something would be unnecessary for the functionality. Therefore, if the commit message reads:</p>
-
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-default" data-lang="default">0aed60f Use a separate .gitignore for each directory</code></pre></div>
-
+<pre><code class="language-default" data-lang="default">0aed60f Use a separate .gitignore for each directory</code></pre>
 <p>We better make damn sure that the <code>git diff 0aed60f^ 0aed60f</code> doesn&rsquo;t show anything that is not essential for adding .gitignore files to each of the directories. That includes formatting code, fixing grammar mistakes in documentation, adding comments. All those things are nice, but how are they related to .gitignore files?</p>
-
 <p>What about this commit? Would it be okay to include some minor adjustments to the code, too, given that we&rsquo;re updating the file anyway?</p>
-
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-default" data-lang="default">69d7fbf Update API documentation on /books endpoint</code></pre></div>
-
+<pre><code class="language-default" data-lang="default">69d7fbf Update API documentation on /books endpoint</code></pre>
 <p>Absolutely not. The description says we&rsquo;re updating documentation, so we should stick to documentation. Anything else is <em>irrelevant</em> for the purpose of this commit. Even if the changes are the pinnacle of our genius, if they are put in the same commit they create history <em>noise</em>, which is <em>a very bad</em> thing. Onlookers will not marvel at our considerable coding skills. Instead, they will point fingers and laugh at us for not knowing any better. Unacceptable.</p>
-
 <p>Instead, we should make the history read like so:</p>
-
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-default" data-lang="default">dfdd05b Improve performance by 306%
-69d7fbf Update API documentation on /books endpoint</code></pre></div>
-
+<pre><code class="language-default" data-lang="default">dfdd05b Improve performance by 306%
+69d7fbf Update API documentation on /books endpoint</code></pre>
 <p>Now that&rsquo;s what I&rsquo;m talking about. I&rsquo;d trip over my own feet rushing to <code>git diff</code> that <code>dfdd05b</code>. Sweet baby Jesus. 306% in one commit. And to think it was hidden in a commit about documntation!</p>
-
-<h3 id="i-m-still-confused-why-bloated-commits-are-bad">I&rsquo;m Still Confused Why Bloated Commits Are Bad</h3>
-
+<h3 id="im-still-confused-why-bloated-commits-are-bad">I&rsquo;m Still Confused Why Bloated Commits Are Bad</h3>
 <p>Atomic commits are all fine and dandy. However, why would we ever bother with them? Sure enough it&rsquo;s nice to have a clean history, but what of it? Git gives us all the tools to see the changes, why would we create more work for ourselves?</p>
-
 <p>Well, for a start, a clean history means that we can easily see the progression of our code. We can see what changes each commit introduced, and we can judge what went woefully wrong (or wonderfully right). We can understand the aim of a commit at a glance, saving ourselves from having to wade through dozens (even hundreds) of lines of unrelated changes.</p>
-
 <p>Think of it like this. Imagine you want to know all about French Revolution in 1789-1799. You pick up a book titled &ldquo;French Revolution&rdquo;, and start leafing through it. It definitely has the information you need. The only problem is that it also discusses at length America&rsquo;s first presidential election (1789), assassination attempt of King Gustav III King of Sweden (1792), and Kosciusko&rsquo;s uprising in Poland (1794). These topics make up half of the book, and the discussion alternates between them without warning. Aside from the fact that it would be supremely confusing, it would also take much longer than necessary to learn important bits about the Revolution because of all the other topics that get in the way. Bloated commit history is like that.</p>
-
 <p>There is also a second, equally serious drawback. Massive commits are much harder to work with. If we have small, atomic commits touching on very specific parts of the code, it is easy to remove or revert them, change their order, cherry pick them. However, if the commit touches half of the code base, this is going to be very painful, and time consuming. And eventually we <em>will</em> have to manipulate commits.</p>
-
 <p>Finally, with a massive commit it takes so much longer than necessary to make sure that manipulating the commit will not break any of the existing functionality. Not to mention scarier. We will need to double and triple check that everything works. And playing with existing commits will happen, especially as our mastery of git grows.</p>
-
 <p>On the other hand, keeping commits atomic makes it easy to:</p>
-
 <ul>
 <li>Merge commits</li>
 <li>Rebase commits</li>
@@ -197,126 +171,82 @@ if (!doNotTrack) {
 <li>Understand what went wrong</li>
 <li>Understand what went right</li>
 </ul>
-
 <p>The list goes on and on&hellip;</p>
-
 <h3 id="so-the-commits-should-be-as-small-as-possible">So the Commits Should Be as Small as Possible?</h3>
-
 <p>Not necessarily. Just because bloated commits are bad, it does not mean that commits touching one line only are necessarily good. Sure, we want to make our commits small and easily digestible. That does not mean, however, that every little change should go to a separate commit. Instead, it is best to aim for a commit that makes sense, that tells a story. If you are making a bugfix, it makes sense that the commit includes both the bugfix <em>and</em> the tests verifying that it really does work.</p>
-
 <p>To put it more succinctly, the overall aim of the commit should be to introduce a complete, stand-alone change. Checking out a project at any commit should give us a working, clean codebase with an easy to read and understand history.</p>
-
 <p>That does not mean that every commit in our <em>local</em> history should represent a working, clean state. Quite the opposite. Since git is decentralized, it gives us freedom to experiment and commit whenever we want and whatever we want. However, local history is just that - local. It is for our consumption, it is not intended for the wider audience. Once we feel the progress is ready to be published, we have a responsibility to make our history clean and easy to work with.</p>
-
 <h3 id="but-making-atomic-commits-is-hard">But Making Atomic Commits Is Hard!</h3>
-
 <p>Indeed. Making atomic commits is arduous. Poeple&rsquo;s attention is fickle, and it is not uncommon to jump between the tasks. At any point in time there might be multiple files being edited and multiple changes juggled at the same time. It&rsquo;s safe to say that not all of them will be directly related to one another, or even to the same functionality.</p>
-
 <p>Besides, unless you possess a perfect memory and insight, you will forget something, and you will need to come back and edit the code that was already committed. On that final review before opening a PR you will find grammar mistakes, strange wording, misleading method names.</p>
-
 <p>This sounds like a situation ripe for gigantic and/or widely dispersed commits. But it does not have to be. One of the many gifts git bestows upon us is <em>local</em> history, which does not need to be shared with others until you decide to do so. Our local history can be as messy, as dispersed and as bloated as we like. Other people do not need to know that. What we do on our own time on our own machine is none of their business.</p>
-
 <p>On the other hand, it becomes their business when we push the code to master or any other place where people are actively working. There we should aim to appear as an omnipotent being, always knowing what changes need to be made and when, and making exactly those changes - nothing more or less.</p>
-
 <p>So how can we make our history atomic?</p>
-
 <h3 id="making-atomic-history">Making Atomic History</h3>
-
 <p>Git provides us with a plethora of tools to make it look like we know what we&rsquo;re doing from the get go. Using them with care and thoughtfulness we can craft history that will make us look good, and smart, too. Let us discuss a few of them, the ones that are usually sufficient to keep the history clean and readable.</p>
-
 <h4 id="amend-your-ways">Amend Your Ways</h4>
-
 <p>Let&rsquo;s image we had such a clear idea that we wrote everything perfectly on our first try. We made exactly the changes we needed to make and resisted the urge to include anything unrelated. We&rsquo;re feeling pretty good about ourselves and our code. So we fire a quick <code>git commit -am &lt;message&gt;</code>. Lo and behold, an atomic commit in all it glory! The only problem is that immediately after we&rsquo;ve committed your changes we notice that the message is not at all clear. It does not say what the commit is about. In our excitement we failed to consider how to describe the changes best. Whatever shall we do now?</p>
-
 <p>This is exactly the situation where we can use the following commands:</p>
-
 <ul>
 <li><code>git commit --amend</code></li>
 <li><code>git commit --amend -m &lt;message&gt;</code></li>
 </ul>
-
 <p>It does what it says on the tin. It lets us amend the most recent commit. In our case, we can use it to simply change the message so that it does not bring shame and dishonour to our family. Excellent for those situations where we do not want to appear as an illiterate brutes. Perfection.</p>
-
 <p>Now consider another situation, similar to the one above. The difference that we did come up with a clear, succinct description of our commit. Instead, we forgot to include some of the changes that are necessary for a proper, self-sustained commit. Have no fear, git has our backs:</p>
-
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git add &lt;file&gt;
 git commit --amend --no-edit</code></pre></div>
-
 <p>This would take our <code>&lt;file&gt;</code> and include it in the most recent commit, without changing that commit&rsquo;s message. Excellent way to create an illusion that we have it all figured out. Easy history changes, easy life.</p>
-
 <h4 id="find-inner-balance-with-rebase">Find Inner Balance With Rebase</h4>
-
 <p>What if we made several commits, some of which should be reordered, and some of which should be merged, as they represent an atomic change? Clearly, <code>git commit --amend</code> will not suffice here. Is all lost? Should we just accept the reality and live in the eternal shame our thoughtlessness has brought upon us? Definitely not. Our history, our rules. We can rewrite it and maintain a pristine public profile. With git, it&rsquo;s almost too easy.</p>
-
 <p>Let us first take a simple case where we have three atomic commits, but we would like to reorder them for a better history flow. Suppose we have something like this:</p>
-
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-default" data-lang="default">d3aea68 Add authentication via Google
+<pre><code class="language-default" data-lang="default">d3aea68 Add authentication via Google
 c768af2 Fix integer overflow
-d00f4c3 Add authentication via Twitter</code></pre></div>
-
+d00f4c3 Add authentication via Twitter</code></pre>
 <p>Isn&rsquo;t this confusing. What is that integer doing between all that lovely authentication work? It would surely look much nicer if we reordered our history a little bit and grouped related commits together. But how do we do it? We rebase:</p>
-
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-default" data-lang="default">git rebase -i HEAD~3
+<pre><code class="language-default" data-lang="default">git rebase -i HEAD~3
 # or 
 git rebase -i d00f4c3^
-# (^ is short for ^1, or first parent of the commit)</code></pre></div>
-
+# (^ is short for ^1, or first parent of the commit)</code></pre>
 <p>The first one is excellent for quick rebases, where we only need to look at a few commits. The second one is better if for you counting is something that happens to other people. Either of the methods will net exactly the same result, though:</p>
-
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
+<pre><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
 2 pick c768af2 Fix integer overflow
 3 pick d00f4c3 Add authentication via Twitter
 4
 5 # Rebase 99b54f7..d3aea68 onto 99b54f7 (3 command(s))
 6 #
 7 # Commands:
-8 # &lt;currently unimportant, but actually useful info&gt;</code></pre></div>
-
+8 # &lt;currently unimportant, but actually useful info&gt;</code></pre>
 <p>Reading through the lines 8-22 will give a us a succinct (but sufficient) introduction into possible operations. However, for reordering purposes these do not matter. What we need to do to reorder commit history is, well, reorder commits in our default git editor. That is, literally change the first three lines to read like this:</p>
-
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
+<pre><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
 2 pick d00f4c3 Add authentication via Twitter
 3 pick c768af2 Fix integer overflow
-...</code></pre></div>
-
+...</code></pre>
 <p>Save it and you&rsquo;re done.</p>
-
 <p>What about the use case where we make a ton of small commits that really should be one or two bigger, atomic commits? Surely merging commits is much more difficult? Nope:</p>
-
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git rebase -i HEAD~3</code></pre></div>
-
 <p>However, instead of reordering, this time we want to make it look something like this:</p>
-
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
+<pre><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
 2 fixup d00f4c3 Add authentication via Twitter
 3 pick c768af2 Fix integer overflow
-...</code></pre></div>
-
+...</code></pre>
 <p>Now <code>d3aea68</code> and <code>d00f4c3</code> would be merged together, and the latter commit&rsquo;s message would be discarded (that is, merged commit would have <code>d3aea68</code> commit&rsquo;s message). So in the end we&rsquo;d have something like this:</p>
-
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-default" data-lang="default">&gt; git log --oneline -2
+<pre><code class="language-default" data-lang="default">&gt; git log --oneline -2
 
 99b54f7 Add authentication via Google
-ac56b69 Fix integer overflow</code></pre></div>
-
+ac56b69 Fix integer overflow</code></pre>
 <p>There you have it. The commits are merged. Obviously, authentication commit is now misleading, as it only mentions authentication via Google. So we could either rebase again and <code>reword</code> the offending commit, or use <code>squash</code> instead of <code>fixup</code>. That way, we would merge the commits into a new one and get to write a new commit message for our shiny new commit. To achieve it, our rebase screen should look something like this:</p>
-
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
+<pre><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
 2 squash d00f4c3 Add authentication via Twitter
 3 pick c768af2 Fix integer overflow
-...</code></pre></div>
-
+...</code></pre>
 <p>Save it. Comments at the bottom will let us know how to write a commit message. In essence, what you write there will be your new commit&rsquo;s message. We can make it look something like this:</p>
-
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Add authentication through 3rd parties
 
 This commit enables authentication through Google and Twitter.
 
 <span style="color:#60a0b0;font-style:italic"># ...</span></code></pre></div>
-
 <p>Saving it gives us the following history:</p>
-
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-default" data-lang="default">&gt; git log -2
+<pre><code class="language-default" data-lang="default">&gt; git log -2
 
 commit f98b4badb393834fc4b95825d589048b86e08bae
 Author: you &lt;you@email.com&gt;
@@ -330,22 +260,14 @@ Date: Sun Apr 29 23:21:268:11 2018 +0300
 
     Add authentication through 3rd parties
 
-    This commit enables authentication through Google and Twitter.</code></pre></div>
-
+    This commit enables authentication through Google and Twitter.</code></pre>
 <p>Note, by the way, that the hash values of the commits change with each of these operations. We are rewriting the commits, so it&rsquo;s only natural that the hash values will be different.</p>
-
 <p>And that&rsquo;s it. With these commands we are well on our way to maintain a pristine, atomic history that will be a pleasure to gaze upon.</p>
-
 <h2 id="conclusion">Conclusion</h2>
-
 <p>What a journey this has been. We looked at why bloated commits are bad. We convinced ourselves that our mistakes are our own business and the world does not necessarily need to know about them. In fact, we should refrain from leaving traces on the web about how haphazard our development has been. After all, we are <em>professionals</em>, and it does not pay to look like we don&rsquo;t know what we&rsquo;re doing half of the time.</p>
-
 <p>We have also learned what are atomic commits, why they are useful and how to make our history atomic. Along the way, we discovered that we can change the commit messages with <code>git --amend</code>.  We experimented a bit with <code>git rebase</code>, and found it to be an excellent tool not only when the commits need a bit of shuffling to spice up our history, but also when we want to make it really nice and clean and merge multiple commits that really should have been a single commit.</p>
-
 <p>While reading all of this you might have asked yourself if it is not cheating. After all, shouldn&rsquo;t the history contain all the changes, all the traces of what we have been doing? Yes and no. Code history enabled by git is a tool to <em>help</em> our development. However, it shouldn&rsquo;t <em>hinder</em> it. We should not make our history confusing, hard to read and follow. Doing that defeats the purpose of the history, as eventually the effort of understanding it becomes too great.</p>
-
 <p>We are all humans with imperfect cognitive processes. We make mistakes, and sometimes we record those mistakes. These records can be very confusing a month or two along the way. We need to make sure we do not shoot our future selves in the foot now. Make yourself a favor and fix them before calling it a day. Git shows us a way.</p>
-
 <p>And if you really enjoy seeing all the bloody history, reach for <code>git reflog</code>.</p>
 
   </section>
@@ -390,7 +312,7 @@ Date: Sun Apr 29 23:21:268:11 2018 +0300
     
 </section>
 <section>
-    <small>2019 • Simonas Viliūnas</small>
+    <small>2021 • Simonas Viliūnas</small>
 </section>
 
 

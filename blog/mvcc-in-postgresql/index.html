@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="author" content="Simonas Viliūnas">
+
+<meta name="description" content="Blog about programming,">
+    
+    
+      <title>MVCC in PostgreSQL :: Machine Code Never Lies</title>
+
+<link rel="canonical" href="https://vilisimo.com/blog/mvcc-in-postgresql/">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+
+<link rel="stylesheet" href="https://vilisimo.com/css/style.css">
+
+    <link rel="shortcut icon" type="image/ico" href="https://vilisimo.com/img/lies.ico">
+
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-113536003-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/vilisimo.com\/"
+      },
+      "articleSection" : "blog",
+      "name" : "MVCC in PostgreSQL",
+      "headline" : "MVCC in PostgreSQL",
+      "description" : "Recently I’ve had the opportunity to give a short presentation at my work on PostgreSQL, and more specifically, concurrency control. While preparing for the presentation, I’ve come across a term that I was not familiar with: multiversion concurrency control (MVCC). I wish I could tell myself that this is an obscure area of research that I had no business of knowing anyway, but the fact is that it is a pretty well known concurrency control method.",
+      "inLanguage" : "en-US",
+      "author" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "creator" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "accountablePerson" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "copyrightHolder" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "copyrightYear" : "2021",
+      "datePublished": "2021-10-10T14:25:13+03:00",
+      "dateModified" : "2021-10-10T14:25:13+03:00",
+      "url" : "https:\/\/vilisimo.com\/blog\/mvcc-in-postgresql\/",
+      "wordCount" : "2370",
+      "keywords" : [ "databases","postgresql","Blog" ]
+  }
+  </script>
+    
+  </head>
+  
+  <body>
+    <header id="page-header">
+      
+        <h1>
+  <a href="https://vilisimo.com/">Machine Code Never Lies</a>
+</h1>
+
+<nav>
+  <ul>
+    <li class="">
+        <a href="https://vilisimo.com/">Home</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.com/blog/">Blog</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.com/projects/">Projects</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.com/about/">About</a>
+      </li>
+    
+  </ul>
+</nav>
+
+      
+    </header>
+
+    <main>
+      
+
+  <article class="markdown">
+    <header>
+  <h1>
+    <a href="https://vilisimo.com/blog/mvcc-in-postgresql/">MVCC in PostgreSQL</a>
+  </h1>
+  <div class="article-info">
+    <div class="date">October 10, 2021</div>
+    
+      <div class="taxonomies"><a href="https://vilisimo.com/categories/databases">databases</a><a href="https://vilisimo.com/categories/postgresql">postgresql</a></div>
+    
+  </div>
+</header>
+    
+  
+    <aside>
+        <h2 id="table-of-contents">Contents</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#concurrency-control">Concurrency Control</a></li>
+    <li><a href="#transaction-isolation">Transaction Isolation</a></li>
+    <li><a href="#multiversion-concurrency-control">Multiversion Concurrency Control</a></li>
+    <li><a href="#mvcc-in-postgresql">MVCC in PostgreSQL</a></li>
+    <li><a href="#drawbacks">Drawbacks</a></li>
+    <li><a href="#remediation">Remediation</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </aside>
+  
+  <section>
+    <p>Recently I’ve had the opportunity to give a short presentation at my work on PostgreSQL, and more specifically, concurrency control. While preparing for the presentation, I’ve come across a term that I was not familiar with: <em>multiversion concurrency control</em> (MVCC). I wish I could tell myself that this is an obscure area of research that I had no business of knowing anyway, but the fact is that it is a pretty well known concurrency control method. PostgreSQL is not particularly shy about it itself - the introductory section of the 13th chapter of PostgreSQL documentation explicitly states that the database uses MVCC to maintain data consistency <a href="https://www.postgresql.org/docs/13/mvcc-intro.html">[1]</a>. However, the section is a little short on the details, so I wanted to explore the mechanism in greater detail.</p>
+<h2 id="concurrency-control">Concurrency Control</h2>
+<p>First step to understanding MVCC is understanding what concurrency control is and why it is important. Simply put, concurrency control is an activity aimed at coordinating concurrent access to the database system. In essence, the goal of it is to produce the same result as if the transactions were run serially - in other words, as if there were no concurrency happening. Thus, a properly controlled system would preserve an illusion that each user is operating on the database alone, without transactions stepping on each other’s toes <a href="https://courses.cs.washington.edu/courses/cse550/16au/papers/CSE550.Conc-DistDB.pdf">[2]</a><a href="http://www.people.fas.harvard.edu/~cs265/papers/bernstein-1983.pdf">[3]</a>.</p>
+<p>To drive the point home, imagine a database that offers no concurrency control and an inventory management system that uses such a database. At some point in time two concurrent transactions start performing operations. One transaction decrements an inventory and starts creating an order entry. The other transaction reads the inventory and sees that it has been decremented. It attempts to locate a corresponding order, yet it fails to do so - it reads the state of the system after inventory has been decremented but before order entry has been created. Thus, for a (hopefully) brief moment it appears that some items from inventory have simply vanished from the system. The second transaction has been exposed to inconsistent data. Depending on the system this may result in subtle bugs that are painful to reproduce and fix.</p>
+<h2 id="transaction-isolation">Transaction Isolation</h2>
+<p>To avoid such situations we may wish to introduce <em>isolation</em> of transactions, which is a property of concurrency control. Isolation of transactions provides certain guarantees in situations when data is accessed concurrently <a href="https://en.wikipedia.org/wiki/Multiversion_concurrency_control">[4]</a>. For example, one isolation level may allow us to see uncommitted data, whereas the other would only show data that has been committed before a transaction began. Thus, we would be able to tailor isolation levels to the needs of our system. The question then is, how can we enforce these isolation levels? How would one go about ensuring that we maintain a consistent view of data even when the system has multiple users reading and writing to the same database?</p>
+<p>In fact, there are a few ways to do it. A relatively simple but somewhat naive way to achieve transaction isolation would be to make heavy use of locks. Imagine that we want to read a table. To prevent anyone from interfering with our reads before we are finished we could simply lock the whole table (or a subset of rows that we are interested in). This would make sure that we always see data at the moment that we acquired a lock on said tables. Conversely, when writing to a table we could lock it so that no one can read it until we are finished. This way, we make sure that our reads always see consistent data.</p>
+<p>Nevertheless, there are obvious drawbacks to such an approach. Locking a table (or even a row) means that no one can access it. This may be fine if we’re planning to have only a few concurrent transactions - we may not even notice it. It may also be sufficient for systems where we do not particularly worry how fast operations are performed, as long as they are performed. On the other hand, if performance matters, we will run into lock contention.</p>
+<p>Imagine we have a fairly heavily used website where we also generate hourly reports. Assume that each report locks tables that are routinely used, for example, users table, comments table, and few others. Naturally, the report is somewhat slow, since it needs to aggregate a lot of data, process it, perhaps insert entries to a few other tables or adjust a few columns. There is almost no question that it is going to be much slower than routine operations. Thus, if it locks the tables that it uses, all other transactions will have to wait to perform any other operation, meaning that functionalities such as login, commenting, voting, etc. will be suspended until it is done. Of course, the example is exaggerated - we can design a locking mechanism that would be less draconic, and just as effective. Nevertheless, locks do have a non-trivial impact on performance, and ideally we would like to avoid them as much as possible.</p>
+<h2 id="multiversion-concurrency-control">Multiversion Concurrency Control</h2>
+<p>As it turns out, there is a better way to achieve transaction isolation, and this is where we turn to MVCC. As the name implies, instead of keeping locks on rows or tables, we can have multiple versions of the same resource. By having “snapshots” of the data we can improve performance of concurrent transactions. This way readers do not block writers, and writers do not block readers <a href="https://momjian.us/main/writings/pgsql/mvcc.pdf">[5]</a>. Instead, readers see some specific version (snapshot) of the data, whereas writers create a new version of it. The version of the snapshot that the readers see depends on transaction isolation level.</p>
+<p>So how does it work? Well, there does not seem to be a standardized way to implement MVCC. Furthermore, since there are multiple databases that use it <a href="https://en.wikipedia.org/wiki/List_of_databases_using_MVCC">[6]</a>, we can’t distinguish One True Way to achieve MVCC. Nevertheless, we can take a look at PostgreSQL’s implementation and take some high level notes on the way it can be implemented.</p>
+<h2 id="mvcc-in-postgresql">MVCC in PostgreSQL</h2>
+<p>Unlike MySQL (which uses undo logs <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-multi-versioning.html">[7]</a>) PostgreSQL implements MVCC by keeping track of some metadata on each row: <code>XMIN</code> and <code>XMAX</code>, (<code>X</code> stands for transaction). It also keeps the current transaction id (<code>XID</code>). Although not visible in usual results, we can access both row metadata as well as transaction id:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#007020;font-weight:bold">SELECT</span> XMIN, XMAX, <span style="color:#666">*</span> <span style="color:#007020;font-weight:bold">FROM</span> <span style="color:#666">&lt;</span><span style="color:#007020;font-weight:bold">table</span><span style="color:#666">&gt;</span>;  <span style="color:#60a0b0;font-style:italic">-- row metadata
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">SELECT</span> txid_current();  <span style="color:#60a0b0;font-style:italic">-- current transaction id</span></code></pre></div>
+<p>From a bird’s point of view, every transaction is assigned an id. Inserts and updates set <code>XMIN</code> on a row (also known as a <em>tuple</em>) whereas updates and deletes set <code>XMAX</code>. PostgreSQL combines isolation levels and these three values to ensure that transactions see only the data that they are supposed to see.</p>
+<p>To make it more concrete, let us consider an example. For the remainder of an article, assume we are operating under a <code>READ COMMITTED</code> transaction isolation level. This means that only data from <em>committed</em> transactions can be read. Imagine two concurrent transactions, <em>Ta</em> and <em>Tb</em>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><em>Ta</em></th>
+<th style="text-align:left"><em>Tb</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><em>Ta</em> is opened with <code>XID=1</code></td>
+<td style="text-align:left"><em>Tb</em> is opened with <code>XID=2</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Ta</em> inserts row <em>R</em> into a table <em>T</em>.  The row gets <code>XMIN</code> equal to <code>1</code> (current transaction id), and <code>XMAX</code> equal to <code>0</code>. However, <em>R</em> is not committed yet.</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><em>Tb</em> attempts to read table <em>T</em>. Since <em>R</em> is not committed yet, <em>Tb</em> does not see it.</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Ta</em> commits changes.</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><em>Tb</em> reads table <em>T</em> again. This time it sees <em>R</em>.</td>
+</tr>
+</tbody>
+</table>
+<p>In general, if <code>XID</code> is higher than <code>XMIN</code>, the transaction is allowed to see the new row. However, <code>READ COMMITTED</code> is a little bit different in a sense that the current executing <em>statement</em> (rather than transaction’s start) becomes a lower boundary for row visibility <a href="https://vladmihalcea.com/how-does-mvcc-multi-version-concurrency-control-work/">[8]</a>.</p>
+<p>What about <code>XMAX</code>? When would it be considered? To see <code>XMAX</code> in action, let us turn to a <code>DELETE</code> statement. Assume that we have a row <em>R</em>, where <code>XMIN=1</code> and <code>XMAX=0</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><em>Ta</em></th>
+<th style="text-align:left"><em>Tb</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><em>Ta</em> is started with <code>XID=2</code>.</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><em>Tb</em> is started with <code>XID=3</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Ta</em> issues <code>DELETE</code> statement for row <em>R</em>, but does not commit it yet. This sets <em>R&rsquo;s</em> <code>XMAX</code> to <code>2</code>.</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><em>Tb</em> reads the table and sees <em>R</em>, as deletion has not been committed yet.</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Ta</em> commits changes.</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><em>Tb</em> reads the table again and does not see <em>R</em> anymore, because <code>XID=3 &gt; XMAX=2</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Thus, we can see that in situations where a transaction&rsquo;s <code>XID</code> is greater than <code>XMAX</code>, the transaction would not see the row anymore.</p>
+<p>What is neat about this particular situation is that the <em>row does not have to be deleted</em>. As long <code>XIDs</code> are greater than <code>XMAX</code>, no transactions will be allowed to see the outdated row. On the other hand, we don’t particularly want to keep the stale data lying around, so database systems tend to clean up and remove redundant rows. Nevertheless, the fact that delete does not actually remove data seems a little bit surprising, but only until we remember that MVCC relies on having multiple versions of data to implement transaction isolation.</p>
+<p>Another somewhat surprising implementation detail is that <code>UPDATE</code> statement <em>creates a new row and marks the old one as deleted</em>. Thus, <code>UPDATE</code> statement is actually two statements wrapped up in one: <code>INSERT</code> and <code>DELETE</code>. This has all sorts of interesting consequences, such as needing to create new index entries and bloating heavily updated tables <a href="https://www.cybertec-postgresql.com/en/">[9]</a>, but it does tie in nicely with the MVCC. Rather than modifying the row, we have a snapshot of a row before an update (the one marked as deleted), and a snapshot of a row after the update (the newly inserted one).</p>
+<p>The short discussion on <code>XID</code>, <code>XMIN</code> and <code>XMAX</code> (along with transaction commit status) shines a light on how a few relatively simple concepts can be elegantly combined into powerful concurrency control mechanisms. Naturally, the actual implementation is much more complicated, and I urge you to refer to <a href="https://vladmihalcea.com/how-does-mvcc-multi-version-concurrency-control-work/">[8]</a> and <a href="https://devcenter.heroku.com/articles/postgresql-concurrency">[10]</a> for more information and examples.</p>
+<h2 id="drawbacks">Drawbacks</h2>
+<p>To close out the discussion, we should be aware that MVCC is not perfect. Avoiding lock contention and still offering non-blocking reads and writes sounds great (and is great to be sure), but PostgreSQL MVCC implementation has its own drawbacks that should be considered.</p>
+<p>The first and the most obvious drawback is redundant data. Imagine that we opened a session in <code>READ COMMITTED</code> transaction isolation level. There is a deleted row in the table, which has <code>XMIN</code> set to <code>1</code>, and <code>XMAX</code> set to <code>2</code>. However, our <code>XID</code> is already 10, and we know for sure that ours is the “oldest” transaction operating on the database. According to what we’ve learned before, no transactions will be able to see the deleted row because its <code>XMAX</code> will be lower than any other <code>XID</code>. For all intents and purposes, this row is “dead” - it may as well not exist. And yet it does. Therein lies the first problem with MVCC - snapshots are not free, and physical storage is required to house multiple versions of the data, even if the data is already too old to be used by any transactions.</p>
+<p>The second problem is that <code>XID</code> can only be 32 bits long. Therefore, “only” around 4 billion transactions are supported before <code>XID</code> would wrap around to 0. If that were to happen, all transactions would suddenly appear to have happened in the future, since <code>XMIN</code> and <code>XMAX</code> would be higher than the current <code>XID</code> <a href="https://www.postgresql.org/docs/14/routine-vacuuming.html#VACUUM-FOR-WRAPAROUND">[11]</a>. As in life, so in databases: the future is invisible, and so are rows with <code>XMIN &gt; XID</code>. Since the transaction would not be able to see the rows, we’d get a perceived data loss, even though the data would still be there - just unaccessible.</p>
+<p>One part of preventing the second issue is to use modulo-2^32 arithmetic. In simple words it means that for any given transaction, ~2 billion <code>XIDs</code> would be “older”, and ~2 billion remaining <code>XIDs</code> would be “newer”. You can verify that yourself by plugging in some values in the following formula (where x and y represent ordered <code>XIDs</code>):</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">x &lt; y if (y - x) % WRAP_LIMIT &lt; WRAP_LIMIT / 2</code></pre></div>
+<p>For example:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">x = 3;  y = 50; WRAP_LIMIT = 100
+3 &lt; 50 if (50 - 3) % 100 &lt; 100 / 2
+3 &lt; 50 if 47 &lt; 50
+3 &lt; 50 = true, x is in the past
+
+x = 3; y = 70; WRAP_LIMIT = 100
+3 &lt; 70 if (70 - 3) % 100 &lt; 100 / 2
+3 &lt; 70 if 67 &lt; 50
+3 &lt; 70 = false, x is in the future</code></pre></div>
+<p>In essence, this results in a circle rather than a line of <code>XIDs</code>, where we’ll never have a situation in which our <code>XID</code> suddenly becomes the “oldest” due to wraparound and all other rows appear to have been inserted in the future. Nevertheless, moving the “window” of two billion transactions around the circle means that we’ll lose sight of <code>XIDs</code> that are at the lower end of the window as their <code>XID</code> will suddenly appear to be in the future.</p>
+<h2 id="remediation">Remediation</h2>
+<p>The problems outlined above can be addressed by running the <code>VACUUM</code> command regularly. First of all, it reclaims “dead” rows for reuse by new rows. This avoids the perpetual need for more disk space. Second, it solves the wraparound issue by marking sufficiently old rows as “frozen” (a flag bit is set on such rows). Frozen rows do not follow the usual comparison logic - they’re always considered to be older than any current transaction in the system, no matter their <code>XIDs</code>. Naturally, this process is not entirely bullet-proof, as can be seen from experiences of Sentry <a href="https://blog.sentry.io/2015/07/23/transaction-id-wraparound-in-postgres">[12]</a>,  Mailchimp <a href="https://mailchimp.com/what-we-learned-from-the-recent-mandrill-outage/">[13]</a> and Joynet <a href="https://www.joyent.com/blog/manta-postmortem-7-27-2015">[14]</a>. However, it works well enough, although a deep understanding of how PostgreSQL implements MVCC is required to make the most of it.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Taking a step back, we can see that at a high level PostgreSQL employs elegant yet simple concepts to implement powerful concurrency control mechanisms. It is telling that despite many bug fixes and improvements the underlying idea behind the implementation has remained largely the same for many years. It is deeply inspiring to see that small, understandable components can be combined into systems powering massive enterprises all around the world.</p>
+<h2 id="sources">Sources</h2>
+<ol>
+<li><a href="https://www.postgresql.org/docs/13/mvcc-intro.html">https://www.postgresql.org/docs/13/mvcc-intro.html</a></li>
+<li><a href="https://courses.cs.washington.edu/courses/cse550/16au/papers/CSE550.Conc-DistDB.pdf">https://courses.cs.washington.edu/courses/cse550/16au/papers/CSE550.Conc-DistDB.pdf</a></li>
+<li><a href="http://www.people.fas.harvard.edu/~cs265/papers/bernstein-1983.pdf">http://www.people.fas.harvard.edu/~cs265/papers/bernstein-1983.pdf</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Multiversion_concurrency_control">https://en.wikipedia.org/wiki/Multiversion_concurrency_control</a></li>
+<li><a href="https://momjian.us/main/writings/pgsql/mvcc.pdf">https://momjian.us/main/writings/pgsql/mvcc.pdf</a></li>
+<li><a href="https://en.wikipedia.org/wiki/List_of_databases_using_MVCC">https://en.wikipedia.org/wiki/List_of_databases_using_MVCC</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-multi-versioning.html">https://dev.mysql.com/doc/refman/8.0/en/innodb-multi-versioning.html</a></li>
+<li><a href="https://vladmihalcea.com/how-does-mvcc-multi-version-concurrency-control-work/">https://vladmihalcea.com/how-does-mvcc-multi-version-concurrency-control-work/</a></li>
+<li><a href="https://www.cybertec-postgresql.com/en/hot-updates-in-postgresql-for-better-performance/">https://www.cybertec-postgresql.com/en/hot-updates-in-postgresql-for-better-performance/</a></li>
+<li><a href="https://devcenter.heroku.com/articles/postgresql-concurrency">https://devcenter.heroku.com/articles/postgresql-concurrency</a></li>
+<li><a href="https://www.postgresql.org/docs/14/routine-vacuuming.html#VACUUM-FOR-WRAPAROUND">https://www.postgresql.org/docs/14/routine-vacuuming.html#VACUUM-FOR-WRAPAROUND</a></li>
+<li><a href="https://blog.sentry.io/2015/07/23/transaction-id-wraparound-in-postgres">https://blog.sentry.io/2015/07/23/transaction-id-wraparound-in-postgres</a></li>
+<li><a href="https://mailchimp.com/what-we-learned-from-the-recent-mandrill-outage/">https://mailchimp.com/what-we-learned-from-the-recent-mandrill-outage/</a></li>
+<li><a href="https://www.joyent.com/blog/manta-postmortem-7-27-2015">https://www.joyent.com/blog/manta-postmortem-7-27-2015</a></li>
+</ol>
+
+  </section>
+
+
+    <footer>
+  <div class="date">Last edit: October 10, 2021</div>
+</footer>
+    <div class="other-entries">
+  <div class="previous-entry">
+    
+      <div>Previous entry:</div>
+      <a href="https://vilisimo.com/blog/making-history/">Making History</a>
+    
+  </div>
+
+  <div class="next-entry">
+    
+  </div>
+</div>
+  </article>
+  
+
+    </main>
+
+    <footer>
+      
+        <section id="social-icons">
+    
+        <a href="https://stackoverflow.com/users/4543382" rel="noopener" target="_blank">
+            <img src="https://vilisimo.com/img/stackoverflow.svg" alt="StackOverflow" />
+        </a>
+    
+    
+    
+        <a href="https://www.github.com/vilisimo" rel="noopener" target="_blank">
+            <img src="https://vilisimo.com/img/github.svg" alt="GitHub" />
+        </a>
+    
+
+    
+        <a href="https://www.linkedin.com/in/simonasviliunas" rel="noopener" target="_blank">
+            <img src="https://vilisimo.com/img/linkedin.svg" alt="LinkedIn" />
+        </a>
+    
+</section>
+<section>
+    <small>2021 • Simonas Viliūnas</small>
+</section>
+
+
+      
+    </footer>
+  </body>
+  
+</html>

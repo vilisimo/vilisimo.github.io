@@ -92,6 +92,15 @@ Why The main motivation for the app was to see what it feels like when half of t
     </item>
     
     <item>
+      <title>MVCC in PostgreSQL</title>
+      <link>https://vilisimo.com/blog/mvcc-in-postgresql/</link>
+      <pubDate>Sun, 10 Oct 2021 14:25:13 +0300</pubDate>
+      
+      <guid>https://vilisimo.com/blog/mvcc-in-postgresql/</guid>
+      <description>Recently I’ve had the opportunity to give a short presentation at my work on PostgreSQL, and more specifically, concurrency control. While preparing for the presentation, I’ve come across a term that I was not familiar with: multiversion concurrency control (MVCC). I wish I could tell myself that this is an obscure area of research that I had no business of knowing anyway, but the fact is that it is a pretty well known concurrency control method.</description>
+    </item>
+    
+    <item>
       <title>Making History</title>
       <link>https://vilisimo.com/blog/making-history/</link>
       <pubDate>Mon, 11 Jun 2018 23:43:08 +0300</pubDate>

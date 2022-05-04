@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="author" content="Simonas Viliūnas">
+
+<meta name="description" content="Making GitHub do the dirty work">
+    
+    
+      <title>Setting up pytest with GitHub Actions :: Machine Code Never Lies</title>
+
+<link rel="canonical" href="https://vilisimo.com/blog/setting-up-pytest-with-github-actions/">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+
+<link rel="stylesheet" href="https://vilisimo.com/css/style.css">
+
+    <link rel="shortcut icon" type="image/ico" href="https://vilisimo.com/img/lies.ico">
+
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-113536003-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/vilisimo.com\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Setting up pytest with GitHub Actions",
+      "headline" : "Setting up pytest with GitHub Actions",
+      "description" : "Making GitHub do the dirty work",
+      "inLanguage" : "en-US",
+      "author" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "creator" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "accountablePerson" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "copyrightHolder" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "copyrightYear" : "2022",
+      "datePublished": "2022-05-04T23:00:46+03:00",
+      "dateModified" : "2022-05-04T23:00:46+03:00",
+      "url" : "https:\/\/vilisimo.com\/blog\/setting-up-pytest-with-github-actions\/",
+      "wordCount" : "410",
+      "keywords" : [ "github","pytest","ci\/cd","Blog" ]
+  }
+  </script>
+    
+  </head>
+  
+  <body>
+    <header id="page-header">
+      
+        <h1>
+  <a href="https://vilisimo.com/">Machine Code Never Lies</a>
+</h1>
+
+<nav>
+  <ul>
+    <li class="">
+        <a href="https://vilisimo.com/">Home</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.com/blog/">Blog</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.com/projects/">Projects</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.com/about/">About</a>
+      </li>
+    
+  </ul>
+</nav>
+
+      
+    </header>
+
+    <main>
+      
+
+  <article class="markdown">
+    <header>
+  <h1>
+    <a href="https://vilisimo.com/blog/setting-up-pytest-with-github-actions/">Setting up pytest with GitHub Actions</a>
+  </h1>
+  <div class="article-info">
+    <div class="date">May 4, 2022</div>
+    
+      <div class="taxonomies"><a href="https://vilisimo.com/categories/github">github</a><a href="https://vilisimo.com/categories/pytest">pytest</a><a href="https://vilisimo.com/categories/ci/cd">ci/cd</a></div>
+    
+  </div>
+</header>
+    
+  
+    <aside>
+        <h2 id="table-of-contents">Contents</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#setting-up-pytest-github-action">Setting Up Pytest GitHub Action</a></li>
+    <li><a href="#final-configuration">Final Configuration</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </aside>
+  
+  <section>
+    <p>For the longest time I have been ignoring GitHub Actions despite all the good things said about them. I’ve been a long-time user of CircleCI <a href="https://circleci.com/">[1]</a> - it is a solid CI/CD platform, and it is perfectly sufficient for my (minimal) needs. However, a few days ago I decided to give GitHub Actions a shot - having CI/CD steps defined on the same platform where the code resides seemed appealing.</p>
+<p>As an initial test, I set up a simple <code>pytest</code> flow for a Django (Python) project. I was expecting to struggle a bit with setting it up the first time, but it turned out to be a straightforward process. However, I did have to google a bit to arrive at the setup that I wanted. Thus, I decided to share a short instruction set on how to do it to have something to refer back to in the future. And who knows - perhaps some weary wanderer on the Internet will find it useful, too.</p>
+<h2 id="setting-up-pytest-github-action">Setting Up Pytest GitHub Action</h2>
+<ol>
+<li>Go to your project on GitHub</li>
+<li>Click on &ldquo;Actions&rdquo; tab</li>
+<li>Select or search for “Python Application”</li>
+<li>Click “Configure”.</li>
+<li>You’ll get the default config that has three steps: setup Python, install dependencies, and lint with <code>flake8</code></li>
+<li>Change the file name to <code>pytest</code> (or any other descriptive name)</li>
+<li>Change</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#062873;font-weight:bold">jobs</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">build</span>:<span style="color:#bbb">
+</span></span></span></code></pre></div><p>to</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#062873;font-weight:bold">jobs</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">test</span>:<span style="color:#bbb">
+</span></span></span></code></pre></div><ol start="8">
+<li>Remove unnecessary commands and dependencies, such as <code>flake8</code> or <code>if [ -f requirements.txt ]</code> condition</li>
+<li>Add cache <a href="https://github.com/actions/cache">[2]</a><a href="https://github.com/actions/cache/blob/main/examples.md#python---pip">[3]</a> right after setting up Python, but before dependency installation:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- <span style="color:#062873;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>actions/cache@v3<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">id</span>:<span style="color:#bbb"> </span>cache<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">with</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">path</span>:<span style="color:#bbb"> </span>~/.cache/pip<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">key</span>:<span style="color:#bbb"> </span>${{ runner.os }}-pip-${{ hashFiles(&#39;**/requirements.*&#39;) }}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">restore-keys</span>:<span style="color:#bbb"> </span>| <span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>${{ runner.os }}-pip-<span style="color:#bbb">
+</span></span></span></code></pre></div><p>This will cache the downloaded assets (tarballs, wheels, etc). Thus, <code>pip</code> will skip re-downloading them on every action if it finds them present in the cache. Note that it will still install dependencies rather than retrieve them from cache, because this setup will not cache the installed packages (which is possible <a href="https://stackoverflow.com/questions/68372063/github-action-pip-dependencies-not-working-after-found-cache/">[4]</a>).</p>
+<ol start="10">
+<li>Finally, add <code>pytest</code> step:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- <span style="color:#062873;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Run pytest<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">run</span>:<span style="color:#bbb"> </span>| <span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>pytest<span style="color:#bbb">
+</span></span></span></code></pre></div><ol start="11">
+<li>Click “Start commit” and commit the changes - action will start running automatically</li>
+</ol>
+<h2 id="final-configuration">Final Configuration</h2>
+<p>The final output should be similar to the following:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#062873;font-weight:bold">name</span>:<span style="color:#bbb"> </span>pytest<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#062873;font-weight:bold">on</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">push</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">branches</span>:<span style="color:#bbb"> </span>[<span style="color:#bbb"> </span>main ]<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">pull_request</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">branches</span>:<span style="color:#bbb"> </span>[<span style="color:#bbb"> </span>main ]<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#062873;font-weight:bold">permissions</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">contents</span>:<span style="color:#bbb"> </span>read<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#062873;font-weight:bold">jobs</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">test</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">runs-on</span>:<span style="color:#bbb"> </span>ubuntu-latest<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">steps</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>- <span style="color:#062873;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>actions/checkout@v3<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>- <span style="color:#062873;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Set up Python 3.10<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>actions/setup-python@v3<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">with</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#062873;font-weight:bold">python-version</span>:<span style="color:#bbb"> </span><span style="color:#4070a0">&#34;3.10&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>- <span style="color:#062873;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>actions/cache@v3<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">id</span>:<span style="color:#bbb"> </span>cache<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">with</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#062873;font-weight:bold">path</span>:<span style="color:#bbb"> </span>~/.cache/pip<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#062873;font-weight:bold">key</span>:<span style="color:#bbb"> </span>${{ runner.os }}-pip-${{ hashFiles(&#39;**/requirements.*&#39;) }}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#062873;font-weight:bold">restore-keys</span>:<span style="color:#bbb"> </span>| <span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span>${{ runner.os }}-pip-<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>- <span style="color:#062873;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Install dependencies<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">run</span>:<span style="color:#bbb"> </span>|<span style="color:#4070a0;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0;font-style:italic">        python -m pip install --upgrade pip
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0;font-style:italic">        pip install -r requirements.txt</span><span style="color:#bbb">        
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>- <span style="color:#062873;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Run pytest<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">run</span>:<span style="color:#bbb"> </span>| <span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>pytest<span style="color:#bbb">
+</span></span></span></code></pre></div><p>With this setup GitHub will run pytest on every push to the <code>main</code> branch, as well as on any pull request that wishes to merge changes into the <code>main</code> branch. It will also make sure to cache downloaded dependency-related assets.</p>
+<h2 id="sources">Sources</h2>
+<ol>
+<li><a href="https://circleci.com/">https://circleci.com/</a></li>
+<li><a href="https://github.com/actions/cache">https://github.com/actions/cache</a></li>
+<li><a href="https://github.com/actions/cache/blob/main/examples.md#python---pip">https://github.com/actions/cache/blob/main/examples.md#python---pip</a></li>
+<li><a href="https://stackoverflow.com/questions/68896173/issue-caching-python-dependencies-in-github-actions">https://stackoverflow.com/questions/68896173/issue-caching-python-dependencies-in-github-actions</a></li>
+</ol>
+
+  </section>
+
+
+    <footer>
+  <div class="date">Last edit: May 4, 2022</div>
+</footer>
+    <div class="other-entries">
+  <div class="previous-entry">
+    
+      <div>Previous entry:</div>
+      <a href="https://vilisimo.com/blog/mvcc-in-postgresql/">MVCC in PostgreSQL</a>
+    
+  </div>
+
+  <div class="next-entry">
+    
+  </div>
+</div>
+  </article>
+  
+
+    </main>
+
+    <footer>
+      
+        <section id="social-icons">
+    
+        <a href="https://stackoverflow.com/users/4543382" rel="noopener" target="_blank">
+            <img src="https://vilisimo.com/img/stackoverflow.svg" alt="StackOverflow" />
+        </a>
+    
+    
+    
+        <a href="https://www.github.com/vilisimo" rel="noopener" target="_blank">
+            <img src="https://vilisimo.com/img/github.svg" alt="GitHub" />
+        </a>
+    
+
+    
+        <a href="https://www.linkedin.com/in/simonasviliunas" rel="noopener" target="_blank">
+            <img src="https://vilisimo.com/img/linkedin.svg" alt="LinkedIn" />
+        </a>
+    
+</section>
+<section>
+    <small>2022 • Simonas Viliūnas</small>
+</section>
+
+
+      
+    </footer>
+  </body>
+  
+</html>

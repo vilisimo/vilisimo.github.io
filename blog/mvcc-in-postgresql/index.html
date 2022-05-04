@@ -81,7 +81,7 @@ if (!doNotTrack) {
       "datePublished": "2021-10-10T14:25:13+03:00",
       "dateModified" : "2021-10-10T14:25:13+03:00",
       "url" : "https:\/\/vilisimo.com\/blog\/mvcc-in-postgresql\/",
-      "wordCount" : "2370",
+      "wordCount" : "2362",
       "keywords" : [ "databases","postgresql","Blog" ]
   }
   </script>
@@ -164,8 +164,8 @@ if (!doNotTrack) {
 <p>So how does it work? Well, there does not seem to be a standardized way to implement MVCC. Furthermore, since there are multiple databases that use it <a href="https://en.wikipedia.org/wiki/List_of_databases_using_MVCC">[6]</a>, we can’t distinguish One True Way to achieve MVCC. Nevertheless, we can take a look at PostgreSQL’s implementation and take some high level notes on the way it can be implemented.</p>
 <h2 id="mvcc-in-postgresql">MVCC in PostgreSQL</h2>
 <p>Unlike MySQL (which uses undo logs <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-multi-versioning.html">[7]</a>) PostgreSQL implements MVCC by keeping track of some metadata on each row: <code>XMIN</code> and <code>XMAX</code>, (<code>X</code> stands for transaction). It also keeps the current transaction id (<code>XID</code>). Although not visible in usual results, we can access both row metadata as well as transaction id:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#007020;font-weight:bold">SELECT</span> XMIN, XMAX, <span style="color:#666">*</span> <span style="color:#007020;font-weight:bold">FROM</span> <span style="color:#666">&lt;</span><span style="color:#007020;font-weight:bold">table</span><span style="color:#666">&gt;</span>;  <span style="color:#60a0b0;font-style:italic">-- row metadata
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">SELECT</span> txid_current();  <span style="color:#60a0b0;font-style:italic">-- current transaction id</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">SELECT</span><span style="color:#bbb"> </span>XMIN,<span style="color:#bbb"> </span>XMAX,<span style="color:#bbb"> </span><span style="color:#666">*</span><span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#bbb"> </span><span style="color:#666">&lt;</span><span style="color:#007020;font-weight:bold">table</span><span style="color:#666">&gt;</span>;<span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic">-- row metadata
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">SELECT</span><span style="color:#bbb"> </span>txid_current();<span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic">-- current transaction id</span></span></span></code></pre></div>
 <p>From a bird’s point of view, every transaction is assigned an id. Inserts and updates set <code>XMIN</code> on a row (also known as a <em>tuple</em>) whereas updates and deletes set <code>XMAX</code>. PostgreSQL combines isolation levels and these three values to ensure that transactions see only the data that they are supposed to see.</p>
 <p>To make it more concrete, let us consider an example. For the remainder of an article, assume we are operating under a <code>READ COMMITTED</code> transaction isolation level. This means that only data from <em>committed</em> transactions can be read. Imagine two concurrent transactions, <em>Ta</em> and <em>Tb</em>.</p>
 <table>
@@ -243,17 +243,17 @@ if (!doNotTrack) {
 <p>The first and the most obvious drawback is redundant data. Imagine that we opened a session in <code>READ COMMITTED</code> transaction isolation level. There is a deleted row in the table, which has <code>XMIN</code> set to <code>1</code>, and <code>XMAX</code> set to <code>2</code>. However, our <code>XID</code> is already 10, and we know for sure that ours is the “oldest” transaction operating on the database. According to what we’ve learned before, no transactions will be able to see the deleted row because its <code>XMAX</code> will be lower than any other <code>XID</code>. For all intents and purposes, this row is “dead” - it may as well not exist. And yet it does. Therein lies the first problem with MVCC - snapshots are not free, and physical storage is required to house multiple versions of the data, even if the data is already too old to be used by any transactions.</p>
 <p>The second problem is that <code>XID</code> can only be 32 bits long. Therefore, “only” around 4 billion transactions are supported before <code>XID</code> would wrap around to 0. If that were to happen, all transactions would suddenly appear to have happened in the future, since <code>XMIN</code> and <code>XMAX</code> would be higher than the current <code>XID</code> <a href="https://www.postgresql.org/docs/14/routine-vacuuming.html#VACUUM-FOR-WRAPAROUND">[11]</a>. As in life, so in databases: the future is invisible, and so are rows with <code>XMIN &gt; XID</code>. Since the transaction would not be able to see the rows, we’d get a perceived data loss, even though the data would still be there - just unaccessible.</p>
 <p>One part of preventing the second issue is to use modulo-2^32 arithmetic. In simple words it means that for any given transaction, ~2 billion <code>XIDs</code> would be “older”, and ~2 billion remaining <code>XIDs</code> would be “newer”. You can verify that yourself by plugging in some values in the following formula (where x and y represent ordered <code>XIDs</code>):</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">x &lt; y if (y - x) % WRAP_LIMIT &lt; WRAP_LIMIT / 2</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>x &lt; y if (y - x) % WRAP_LIMIT &lt; WRAP_LIMIT / 2</span></span></code></pre></div>
 <p>For example:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">x = 3;  y = 50; WRAP_LIMIT = 100
-3 &lt; 50 if (50 - 3) % 100 &lt; 100 / 2
-3 &lt; 50 if 47 &lt; 50
-3 &lt; 50 = true, x is in the past
-
-x = 3; y = 70; WRAP_LIMIT = 100
-3 &lt; 70 if (70 - 3) % 100 &lt; 100 / 2
-3 &lt; 70 if 67 &lt; 50
-3 &lt; 70 = false, x is in the future</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>x = 3;  y = 50; WRAP_LIMIT = 100
+</span></span><span style="display:flex;"><span>3 &lt; 50 if (50 - 3) % 100 &lt; 100 / 2
+</span></span><span style="display:flex;"><span>3 &lt; 50 if 47 &lt; 50
+</span></span><span style="display:flex;"><span>3 &lt; 50 = true, x is in the past
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x = 3; y = 70; WRAP_LIMIT = 100
+</span></span><span style="display:flex;"><span>3 &lt; 70 if (70 - 3) % 100 &lt; 100 / 2
+</span></span><span style="display:flex;"><span>3 &lt; 70 if 67 &lt; 50
+</span></span><span style="display:flex;"><span>3 &lt; 70 = false, x is in the future</span></span></code></pre></div>
 <p>In essence, this results in a circle rather than a line of <code>XIDs</code>, where we’ll never have a situation in which our <code>XID</code> suddenly becomes the “oldest” due to wraparound and all other rows appear to have been inserted in the future. Nevertheless, moving the “window” of two billion transactions around the circle means that we’ll lose sight of <code>XIDs</code> that are at the lower end of the window as their <code>XID</code> will suddenly appear to be in the future.</p>
 <h2 id="remediation">Remediation</h2>
 <p>The problems outlined above can be addressed by running the <code>VACUUM</code> command regularly. First of all, it reclaims “dead” rows for reuse by new rows. This avoids the perpetual need for more disk space. Second, it solves the wraparound issue by marking sufficiently old rows as “frozen” (a flag bit is set on such rows). Frozen rows do not follow the usual comparison logic - they’re always considered to be older than any current transaction in the system, no matter their <code>XIDs</code>. Naturally, this process is not entirely bullet-proof, as can be seen from experiences of Sentry <a href="https://blog.sentry.io/2015/07/23/transaction-id-wraparound-in-postgres">[12]</a>,  Mailchimp <a href="https://mailchimp.com/what-we-learned-from-the-recent-mandrill-outage/">[13]</a> and Joynet <a href="https://www.joyent.com/blog/manta-postmortem-7-27-2015">[14]</a>. However, it works well enough, although a deep understanding of how PostgreSQL implements MVCC is required to make the most of it.</p>
@@ -293,6 +293,9 @@ x = 3; y = 70; WRAP_LIMIT = 100
 
   <div class="next-entry">
     
+      <div>Next entry:</div>
+      <a href="https://vilisimo.com/blog/setting-up-pytest-with-github-actions/">Setting up pytest with GitHub Actions</a>
+    
   </div>
 </div>
   </article>
@@ -322,7 +325,7 @@ x = 3; y = 70; WRAP_LIMIT = 100
     
 </section>
 <section>
-    <small>2021 • Simonas Viliūnas</small>
+    <small>2022 • Simonas Viliūnas</small>
 </section>
 
 

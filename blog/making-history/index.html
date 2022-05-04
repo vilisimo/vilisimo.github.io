@@ -147,13 +147,13 @@ if (!doNotTrack) {
 </blockquote>
 <p>One of the best ways to avoid the sloppy git history is to aim for <strong><em>atomic</em></strong> commits. Easy enough. But what the hell is atomic commit?</p>
 <p>Simply put, atomic commit consists <em>only</em> of the changes that are absolutely necessary for what the commit is about - nothing more, nothing less. Taking anything away would break the functionality. Adding something would be unnecessary for the functionality. Therefore, if the commit message reads:</p>
-<pre><code class="language-default" data-lang="default">0aed60f Use a separate .gitignore for each directory</code></pre>
+<pre tabindex="0"><code class="language-default" data-lang="default">0aed60f Use a separate .gitignore for each directory</code></pre>
 <p>We better make damn sure that the <code>git diff 0aed60f^ 0aed60f</code> doesn&rsquo;t show anything that is not essential for adding .gitignore files to each of the directories. That includes formatting code, fixing grammar mistakes in documentation, adding comments. All those things are nice, but how are they related to .gitignore files?</p>
 <p>What about this commit? Would it be okay to include some minor adjustments to the code, too, given that we&rsquo;re updating the file anyway?</p>
-<pre><code class="language-default" data-lang="default">69d7fbf Update API documentation on /books endpoint</code></pre>
+<pre tabindex="0"><code class="language-default" data-lang="default">69d7fbf Update API documentation on /books endpoint</code></pre>
 <p>Absolutely not. The description says we&rsquo;re updating documentation, so we should stick to documentation. Anything else is <em>irrelevant</em> for the purpose of this commit. Even if the changes are the pinnacle of our genius, if they are put in the same commit they create history <em>noise</em>, which is <em>a very bad</em> thing. Onlookers will not marvel at our considerable coding skills. Instead, they will point fingers and laugh at us for not knowing any better. Unacceptable.</p>
 <p>Instead, we should make the history read like so:</p>
-<pre><code class="language-default" data-lang="default">dfdd05b Improve performance by 306%
+<pre tabindex="0"><code class="language-default" data-lang="default">dfdd05b Improve performance by 306%
 69d7fbf Update API documentation on /books endpoint</code></pre>
 <p>Now that&rsquo;s what I&rsquo;m talking about. I&rsquo;d trip over my own feet rushing to <code>git diff</code> that <code>dfdd05b</code>. Sweet baby Jesus. 306% in one commit. And to think it was hidden in a commit about documntation!</p>
 <h3 id="im-still-confused-why-bloated-commits-are-bad">I&rsquo;m Still Confused Why Bloated Commits Are Bad</h3>
@@ -194,22 +194,22 @@ if (!doNotTrack) {
 </ul>
 <p>It does what it says on the tin. It lets us amend the most recent commit. In our case, we can use it to simply change the message so that it does not bring shame and dishonour to our family. Excellent for those situations where we do not want to appear as an illiterate brutes. Perfection.</p>
 <p>Now consider another situation, similar to the one above. The difference that we did come up with a clear, succinct description of our commit. Instead, we forgot to include some of the changes that are necessary for a proper, self-sustained commit. Have no fear, git has our backs:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git add &lt;file&gt;
-git commit --amend --no-edit</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add &lt;file&gt;
+</span></span><span style="display:flex;"><span>git commit --amend --no-edit</span></span></code></pre></div>
 <p>This would take our <code>&lt;file&gt;</code> and include it in the most recent commit, without changing that commit&rsquo;s message. Excellent way to create an illusion that we have it all figured out. Easy history changes, easy life.</p>
 <h4 id="find-inner-balance-with-rebase">Find Inner Balance With Rebase</h4>
 <p>What if we made several commits, some of which should be reordered, and some of which should be merged, as they represent an atomic change? Clearly, <code>git commit --amend</code> will not suffice here. Is all lost? Should we just accept the reality and live in the eternal shame our thoughtlessness has brought upon us? Definitely not. Our history, our rules. We can rewrite it and maintain a pristine public profile. With git, it&rsquo;s almost too easy.</p>
 <p>Let us first take a simple case where we have three atomic commits, but we would like to reorder them for a better history flow. Suppose we have something like this:</p>
-<pre><code class="language-default" data-lang="default">d3aea68 Add authentication via Google
+<pre tabindex="0"><code class="language-default" data-lang="default">d3aea68 Add authentication via Google
 c768af2 Fix integer overflow
 d00f4c3 Add authentication via Twitter</code></pre>
 <p>Isn&rsquo;t this confusing. What is that integer doing between all that lovely authentication work? It would surely look much nicer if we reordered our history a little bit and grouped related commits together. But how do we do it? We rebase:</p>
-<pre><code class="language-default" data-lang="default">git rebase -i HEAD~3
+<pre tabindex="0"><code class="language-default" data-lang="default">git rebase -i HEAD~3
 # or 
 git rebase -i d00f4c3^
 # (^ is short for ^1, or first parent of the commit)</code></pre>
 <p>The first one is excellent for quick rebases, where we only need to look at a few commits. The second one is better if for you counting is something that happens to other people. Either of the methods will net exactly the same result, though:</p>
-<pre><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
+<pre tabindex="0"><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
 2 pick c768af2 Fix integer overflow
 3 pick d00f4c3 Add authentication via Twitter
 4
@@ -218,36 +218,36 @@ git rebase -i d00f4c3^
 7 # Commands:
 8 # &lt;currently unimportant, but actually useful info&gt;</code></pre>
 <p>Reading through the lines 8-22 will give a us a succinct (but sufficient) introduction into possible operations. However, for reordering purposes these do not matter. What we need to do to reorder commit history is, well, reorder commits in our default git editor. That is, literally change the first three lines to read like this:</p>
-<pre><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
+<pre tabindex="0"><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
 2 pick d00f4c3 Add authentication via Twitter
 3 pick c768af2 Fix integer overflow
 ...</code></pre>
 <p>Save it and you&rsquo;re done.</p>
 <p>What about the use case where we make a ton of small commits that really should be one or two bigger, atomic commits? Surely merging commits is much more difficult? Nope:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git rebase -i HEAD~3</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git rebase -i HEAD~3</span></span></code></pre></div>
 <p>However, instead of reordering, this time we want to make it look something like this:</p>
-<pre><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
+<pre tabindex="0"><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
 2 fixup d00f4c3 Add authentication via Twitter
 3 pick c768af2 Fix integer overflow
 ...</code></pre>
 <p>Now <code>d3aea68</code> and <code>d00f4c3</code> would be merged together, and the latter commit&rsquo;s message would be discarded (that is, merged commit would have <code>d3aea68</code> commit&rsquo;s message). So in the end we&rsquo;d have something like this:</p>
-<pre><code class="language-default" data-lang="default">&gt; git log --oneline -2
+<pre tabindex="0"><code class="language-default" data-lang="default">&gt; git log --oneline -2
 
 99b54f7 Add authentication via Google
 ac56b69 Fix integer overflow</code></pre>
 <p>There you have it. The commits are merged. Obviously, authentication commit is now misleading, as it only mentions authentication via Google. So we could either rebase again and <code>reword</code> the offending commit, or use <code>squash</code> instead of <code>fixup</code>. That way, we would merge the commits into a new one and get to write a new commit message for our shiny new commit. To achieve it, our rebase screen should look something like this:</p>
-<pre><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
+<pre tabindex="0"><code class="language-default" data-lang="default">1 pick d3aea68 Add authentication via Google
 2 squash d00f4c3 Add authentication via Twitter
 3 pick c768af2 Fix integer overflow
 ...</code></pre>
 <p>Save it. Comments at the bottom will let us know how to write a commit message. In essence, what you write there will be your new commit&rsquo;s message. We can make it look something like this:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Add authentication through 3rd parties
-
-This commit enables authentication through Google and Twitter.
-
-<span style="color:#60a0b0;font-style:italic"># ...</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Add authentication through 3rd parties
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>This commit enables authentication through Google and Twitter.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"># ...</span></span></span></code></pre></div>
 <p>Saving it gives us the following history:</p>
-<pre><code class="language-default" data-lang="default">&gt; git log -2
+<pre tabindex="0"><code class="language-default" data-lang="default">&gt; git log -2
 
 commit f98b4badb393834fc4b95825d589048b86e08bae
 Author: you &lt;you@email.com&gt;
@@ -316,7 +316,7 @@ Date: Sun Apr 29 23:21:268:11 2018 +0300
     
 </section>
 <section>
-    <small>2021 • Simonas Viliūnas</small>
+    <small>2022 • Simonas Viliūnas</small>
 </section>
 
 

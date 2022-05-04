@@ -6,7 +6,25 @@
     <description>Recent content in Categories on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 Oct 2021 14:25:13 +0300</lastBuildDate><atom:link href="https://vilisimo.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 May 2022 23:00:46 +0300</lastBuildDate><atom:link href="https://vilisimo.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>github</title>
+      <link>https://vilisimo.com/categories/github/</link>
+      <pubDate>Wed, 04 May 2022 23:00:46 +0300</pubDate>
+      
+      <guid>https://vilisimo.com/categories/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pytest</title>
+      <link>https://vilisimo.com/categories/pytest/</link>
+      <pubDate>Wed, 04 May 2022 23:00:46 +0300</pubDate>
+      
+      <guid>https://vilisimo.com/categories/pytest/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>databases</title>
       <link>https://vilisimo.com/categories/databases/</link>
@@ -31,6 +49,15 @@
       <pubDate>Mon, 11 Jun 2018 23:43:08 +0300</pubDate>
       
       <guid>https://vilisimo.com/categories/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ci/cd</title>
+      <link>https://vilisimo.com/categories/ci/cd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vilisimo.com/categories/ci/cd/</guid>
       <description></description>
     </item>
     

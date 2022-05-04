@@ -8,6 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0300</lastBuildDate><atom:link href="https://vilisimo.com/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Setting up pytest with GitHub Actions</title>
+      <link>https://vilisimo.com/blog/setting-up-pytest-with-github-actions/</link>
+      <pubDate>Wed, 04 May 2022 23:00:46 +0300</pubDate>
+      
+      <guid>https://vilisimo.com/blog/setting-up-pytest-with-github-actions/</guid>
+      <description>For the longest time I have been ignoring GitHub Actions despite all the good things said about them. I’ve been a long-time user of CircleCI [1] - it is a solid CI/CD platform, and it is perfectly sufficient for my (minimal) needs. However, a few days ago I decided to give GitHub Actions a shot - having CI/CD steps defined on the same platform where the code resides seemed appealing.</description>
+    </item>
+    
+    <item>
       <title>MVCC in PostgreSQL</title>
       <link>https://vilisimo.com/blog/mvcc-in-postgresql/</link>
       <pubDate>Sun, 10 Oct 2021 14:25:13 +0300</pubDate>

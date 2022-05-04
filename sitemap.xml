@@ -1,239 +1,156 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://vilisimo.com/projects/blog/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/projects/sink/</loc>
     <lastmod>2019-08-30T17:26:48+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/projects/steamcli/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/projects/cookme/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/projects/emperor/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/projects/tasks/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/projects/tables/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/projects/books-crud/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/categories/</loc>
-    <lastmod>2021-10-10T23:52:56+03:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2022-05-04T23:59:58+03:00</lastmod>
+  </url><url>
+    <loc>https://vilisimo.com/categories/github/</loc>
+    <lastmod>2022-05-04T23:59:58+03:00</lastmod>
+  </url><url>
+    <loc>https://vilisimo.com/categories/pytest/</loc>
+    <lastmod>2022-05-04T23:59:58+03:00</lastmod>
+  </url><url>
+    <loc>https://vilisimo.com/blog/setting-up-pytest-with-github-actions/</loc>
+    <lastmod>2022-05-04T23:59:58+03:00</lastmod>
+  </url><url>
     <loc>https://vilisimo.com/categories/databases/</loc>
-    <lastmod>2021-10-10T23:52:56+03:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-10-10T23:56:08+03:00</lastmod>
+  </url><url>
     <loc>https://vilisimo.com/blog/mvcc-in-postgresql/</loc>
-    <lastmod>2021-10-10T23:52:56+03:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-10-10T23:56:08+03:00</lastmod>
+  </url><url>
     <loc>https://vilisimo.com/categories/postgresql/</loc>
-    <lastmod>2021-10-10T23:52:56+03:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-10-10T23:56:08+03:00</lastmod>
+  </url><url>
     <loc>https://vilisimo.com/about/</loc>
     <lastmod>2021-01-19T23:42:04+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/aws/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/blog/</loc>
     <lastmod>2019-06-08T23:43:09+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/camel/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/languages/css/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/django/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/docker/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/dropwizard/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/languages/groovy/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/guice/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/heroku/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/hsqldb/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/languages/html/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/hugo/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/languages/java/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/languages/javascript/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/jdbi/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/jquery/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/languages/</loc>
     <lastmod>2019-08-30T17:26:48+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/liquibase/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/</loc>
     <lastmod>2019-06-08T23:43:09+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/maven/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/projects/</loc>
     <lastmod>2021-02-07T19:20:17+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/languages/python/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/languages/sass/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/spock/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/sqlite/</loc>
     <lastmod>2018-10-27T16:03:18+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/</loc>
     <lastmod>2019-08-30T17:26:48+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/categories/git/</loc>
     <lastmod>2018-06-11T23:44:02+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/blog/making-history/</loc>
     <lastmod>2018-06-11T23:44:02+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/languages/dart/</loc>
     <lastmod>2019-08-30T17:26:48+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/firebase/</loc>
     <lastmod>2019-08-30T17:26:48+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/flutter/</loc>
     <lastmod>2019-08-30T17:26:48+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://vilisimo.com/tools/flutter-redux/</loc>
     <lastmod>2019-08-30T17:26:48+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://vilisimo.com/categories/ci/cd/</loc>
+  </url><url>
     <loc>https://vilisimo.com/tags/</loc>
   </url>
-  
 </urlset>

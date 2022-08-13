@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="author" content="Simonas Viliūnas">
+
+<meta name="description" content="The dreaded &#39;[Errno 13] Permission denied&#39; error and how to fix it">
+    
+    
+      <title>File System Permissions in Dockerfile :: Machine Code Never Lies</title>
+
+<link rel="canonical" href="https://vilisimo.com/blog/file-system-permissions-in-dockerfile/">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+
+<link rel="stylesheet" href="https://vilisimo.com/css/style.css">
+
+    <link rel="shortcut icon" type="image/ico" href="https://vilisimo.com/img/lies.ico">
+
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-113536003-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/vilisimo.com\/"
+      },
+      "articleSection" : "blog",
+      "name" : "File System Permissions in Dockerfile",
+      "headline" : "File System Permissions in Dockerfile",
+      "description" : "The dreaded \u0027[Errno 13] Permission denied\u0027 error and how to fix it",
+      "inLanguage" : "en-US",
+      "author" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "creator" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "accountablePerson" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "copyrightHolder" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "copyrightYear" : "2022",
+      "datePublished": "2022-08-13T11:37:56+03:00",
+      "dateModified" : "2022-08-13T11:37:56+03:00",
+      "url" : "https:\/\/vilisimo.com\/blog\/file-system-permissions-in-dockerfile\/",
+      "wordCount" : "1102",
+      "keywords" : [ "docker","django","linux","Blog" ]
+  }
+  </script>
+    
+  </head>
+  
+  <body>
+    <header id="page-header">
+      
+        <h1>
+  <a href="https://vilisimo.com/">Machine Code Never Lies</a>
+</h1>
+
+<nav>
+  <ul>
+    <li class="">
+        <a href="https://vilisimo.com/">Home</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.com/blog/">Blog</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.com/projects/">Projects</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.com/about/">About</a>
+      </li>
+    
+  </ul>
+</nav>
+
+      
+    </header>
+
+    <main>
+      
+
+  <article class="markdown">
+    <header>
+  <h1>
+    <a href="https://vilisimo.com/blog/file-system-permissions-in-dockerfile/">File System Permissions in Dockerfile</a>
+  </h1>
+  <div class="article-info">
+    <div class="date">August 13, 2022</div>
+    
+      <div class="taxonomies"><a href="https://vilisimo.com/categories/docker">docker</a><a href="https://vilisimo.com/categories/django">django</a><a href="https://vilisimo.com/categories/linux">linux</a></div>
+    
+  </div>
+</header>
+    
+  
+  <section>
+    <p>Few days ago I was playing with a Django application, trying to containerize it. Everything was going smoothly until I tried to run <code>collectstatic</code> in Dockerfile. Attempting to do so threw the following error:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Traceback <span style="color:#666">(</span>most recent call last<span style="color:#666">)</span>:
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/home/project/app/manage.py&#34;</span>, line 33, in &lt;module&gt;
+</span></span><span style="display:flex;"><span>    main<span style="color:#666">()</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/home/project/app/manage.py&#34;</span>, line 29, in main
+</span></span><span style="display:flex;"><span>    execute_from_command_line<span style="color:#666">(</span>sys.argv<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/usr/local/lib/python3.10/site-packages/django/core/management/__init__.py&#34;</span>, line 446, in execute_from_command_line
+</span></span><span style="display:flex;"><span>    utility.execute<span style="color:#666">()</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/usr/local/lib/python3.10/site-packages/django/core/management/__init__.py&#34;</span>, line 440, in execute
+</span></span><span style="display:flex;"><span>    self.fetch_command<span style="color:#666">(</span>subcommand<span style="color:#666">)</span>.run_from_argv<span style="color:#666">(</span>self.argv<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/usr/local/lib/python3.10/site-packages/django/core/management/base.py&#34;</span>, line 402, in run_from_argv
+</span></span><span style="display:flex;"><span>    self.execute<span style="color:#666">(</span>*args, **cmd_options<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/usr/local/lib/python3.10/site-packages/django/core/management/base.py&#34;</span>, line 448, in execute
+</span></span><span style="display:flex;"><span>    <span style="color:#bb60d5">output</span> <span style="color:#666">=</span> self.handle<span style="color:#666">(</span>*args, **options<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/usr/local/lib/python3.10/site-packages/django/contrib/staticfiles/management/commands/collectstatic.py&#34;</span>, line 209, in handle
+</span></span><span style="display:flex;"><span>    <span style="color:#bb60d5">collected</span> <span style="color:#666">=</span> self.collect<span style="color:#666">()</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/usr/local/lib/python3.10/site-packages/django/contrib/staticfiles/management/commands/collectstatic.py&#34;</span>, line 135, in collect
+</span></span><span style="display:flex;"><span>    handler<span style="color:#666">(</span>path, prefixed_path, storage<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/usr/local/lib/python3.10/site-packages/django/contrib/staticfiles/management/commands/collectstatic.py&#34;</span>, line 378, in copy_file
+</span></span><span style="display:flex;"><span>    self.storage.save<span style="color:#666">(</span>prefixed_path, source_file<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/usr/local/lib/python3.10/site-packages/django/core/files/storage.py&#34;</span>, line 56, in save
+</span></span><span style="display:flex;"><span>    <span style="color:#bb60d5">name</span> <span style="color:#666">=</span> self._save<span style="color:#666">(</span>name, content<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/usr/local/lib/python3.10/site-packages/django/core/files/storage.py&#34;</span>, line 295, in _save
+</span></span><span style="display:flex;"><span>    os.makedirs<span style="color:#666">(</span>directory, <span style="color:#bb60d5">exist_ok</span><span style="color:#666">=</span>True<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/usr/local/lib/python3.10/os.py&#34;</span>, line 215, in makedirs
+</span></span><span style="display:flex;"><span>    makedirs<span style="color:#666">(</span>head, <span style="color:#bb60d5">exist_ok</span><span style="color:#666">=</span>exist_ok<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#4070a0">&#34;/usr/local/lib/python3.10/os.py&#34;</span>, line 225, in makedirs
+</span></span><span style="display:flex;"><span>    mkdir<span style="color:#666">(</span>name, mode<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>PermissionError: <span style="color:#666">[</span>Errno 13<span style="color:#666">]</span> Permission denied: <span style="color:#4070a0">&#39;/home/project/app/static/admin&#39;</span>
+</span></span></code></pre></div><p>This took me a little bit to figure out, mostly because I missed a command in Dockerfile. I failed to reflect on the basics of Linux filesystem and how Docker works which made the bug hunt longer than it should have been. However, spending some time on experimentation made the mistake obvious and drove the lesson home.</p>
+<h1 id="project-structure">Project Structure</h1>
+<p>For the purposes of not missing the forest for the trees, this is the simplified project structure:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>user@user:~/coding/project$ tree -a -L <span style="color:#40a070">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>├── Dockerfile
+</span></span><span style="display:flex;"><span>├── .dockerignore
+</span></span><span style="display:flex;"><span>├── env
+</span></span><span style="display:flex;"><span>├── .git
+</span></span><span style="display:flex;"><span>├── .gitignore
+</span></span><span style="display:flex;"><span>├── gunicorn.conf.py
+</span></span><span style="display:flex;"><span>├── manage.py
+</span></span><span style="display:flex;"><span>├── project
+</span></span><span style="display:flex;"><span>├── README.md
+</span></span><span style="display:flex;"><span>├── requirements.txt
+</span></span><span style="display:flex;"><span>└── settings
+</span></span></code></pre></div><h1 id="dockerfile">Dockerfile</h1>
+<p>This is the simplified <code>Dockerfile</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">FROM</span><span style="color:#4070a0"> python:3.10.6-slim</span><span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> useradd -U app<span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">ENV</span> <span style="color:#bb60d5">PYTHONDONTWRITEBYTECODE</span><span style="color:#666">=</span><span style="color:#40a070">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">ENV</span> <span style="color:#bb60d5">PYTHONUNBUFFERED</span><span style="color:#666">=</span><span style="color:#40a070">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">RUN</span> apt-get update <span style="color:#666">&amp;&amp;</span> apt-get -y install libpq-dev gcc netcat<span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> requirements.txt ./<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> pip install -U pip setuptools --no-cache-dir -r requirements.txt<span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">ENV</span> <span style="color:#bb60d5">APP_DIR</span><span style="color:#666">=</span>app
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">ENV</span> <span style="color:#bb60d5">USER_HOME</span><span style="color:#666">=</span>/home/project<span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">ENV</span> <span style="color:#bb60d5">CODE_DIR</span><span style="color:#666">=</span><span style="color:#bb60d5">$USER_HOME</span>/<span style="color:#bb60d5">$APP_DIR</span><span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">WORKDIR</span><span style="color:#4070a0"> $CODE_DIR</span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> mkdir <span style="color:#bb60d5">$CODE_DIR</span>/static<span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --chown<span style="color:#666">=</span>app . <span style="color:#bb60d5">$CODE_DIR</span><span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">USER</span><span style="color:#4070a0"> app</span><span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> python manage.py collectstatic --no-input<span style="">
+</span></span></span></code></pre></div><h1 id="the-issue-and-the-fix">The Issue and the Fix</h1>
+<p>An observant reader will note the issue immediately. However, for mere mortals like me, this is the relevant bit of the Dockerfile:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">RUN</span> mkdir <span style="color:#bb60d5">$CODE_DIR</span>/static<span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">COPY</span> --chown<span style="color:#666">=</span>app . <span style="color:#bb60d5">$CODE_DIR</span><span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">USER</span><span style="color:#4070a0"> app</span><span style="">
+</span></span></span><span style="display:flex;"><span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> python manage.py collectstatic --no-input<span style="">
+</span></span></span></code></pre></div><p>What is happening here? Well, first of all, we create a <code>static/</code> directory, which matches the static directory specified in the <code>settings.py</code> file. This is where we intend the static assets to live. However, note that we have this command before specifying that we wish to switch to <code>app</code> user (<code>USER app</code>). Thus, the command runs as <code>root</code>. Therefore, it is owned by <code>root</code>, and the <code>app</code> user has no permissions to write to it. The simple fix is to add edit the line to read as follows:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">RUN</span> mkdir <span style="color:#bb60d5">$CODE_DIR</span>/static <span style="color:#666">&amp;&amp;</span> chown app <span style="color:#bb60d5">$CODE_DIR</span>/static<span style="">
+</span></span></span></code></pre></div><p>Now, <code>static/</code> folder belongs to <code>app</code>, and <code>app</code> can create additional folders and files inside of it.</p>
+<h1 id="further-exploration">Further Exploration</h1>
+<p>One might wonder if we perhaps could simply not create the folder and let <code>collectstatic</code> do it - after all, we are running it as <code>app</code>, so it would make sense that whatever we run after switching to <code>app</code> user should belong to <code>app</code>. While this may indeed be true (provided we have a Dockerfile as defined above) it would still not solve the issue. To understand why we can exec inside the container and view the permissions of the file system:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>app@e6bde753d120:~/app$ ls -la
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#40a070">1</span> root      root      <span style="color:#40a070">4096</span> Aug <span style="color:#40a070">13</span> 09:04 .
+</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#40a070">1</span> root      root      <span style="color:#40a070">4096</span> Aug <span style="color:#40a070">13</span> 09:04 ..
+</span></span><span style="display:flex;"><span>-rw-rw-r-- <span style="color:#40a070">1</span> app app  <span style="color:#40a070">219</span> Aug <span style="color:#40a070">12</span> 04:55 README.md
+</span></span><span style="display:flex;"><span>-rw-rw-r-- <span style="color:#40a070">1</span> app app  <span style="color:#40a070">502</span> Aug <span style="color:#40a070">12</span> 04:55 docker-compose.yaml
+</span></span><span style="display:flex;"><span>-rw-rw-r-- <span style="color:#40a070">1</span> app app   <span style="color:#40a070">53</span> Aug <span style="color:#40a070">12</span> 04:55 gunicorn.conf.py
+</span></span><span style="display:flex;"><span>-rwxrwxr-x <span style="color:#40a070">1</span> app app  <span style="color:#40a070">929</span> Aug <span style="color:#40a070">12</span> 04:55 manage.py
+</span></span><span style="display:flex;"><span>drwxrwxr-x <span style="color:#40a070">7</span> app app <span style="color:#40a070">4096</span> Jul <span style="color:#40a070">30</span> 09:15 project
+</span></span><span style="display:flex;"><span>-rw-rw-r-- <span style="color:#40a070">1</span> app app  <span style="color:#40a070">111</span> Aug <span style="color:#40a070">12</span> 04:55 requirements.txt
+</span></span><span style="display:flex;"><span>drwxrwxr-x <span style="color:#40a070">3</span> app app <span style="color:#40a070">4096</span> Aug <span style="color:#40a070">12</span> 04:55 settings
+</span></span></code></pre></div><p>Note the following line:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>drwxr-xr-x <span style="color:#40a070">1</span> root      root      <span style="color:#40a070">4096</span> Aug <span style="color:#40a070">13</span> 09:04 .
+</span></span></code></pre></div><p>This means that the current directory is owned by a <code>root</code> user. Hence, <code>app</code> user has no power in there, including trying to create directories (which <code>collectstatic</code> would attempt to do). To verify that this is the case, let&rsquo;s break down <code>drwxr-xr-x 1 root root 4096 Aug 13 09:04 .</code>:</p>
+<ul>
+<li><code>d</code> - directory</li>
+<li><code>rwx</code> - permissions the owner has over the directory (read, write, execute)</li>
+<li><code>r-x</code> - permissions the group has over the directory (read, execute)</li>
+<li><code>r-x</code> - <em>permissions others have over the directory (read, execute)</em></li>
+<li><code>1</code> - number of hard links to the directory</li>
+<li><code>root</code> - user that owns the directory</li>
+<li><code>root</code> - the group that the directory belongs to</li>
+<li><code>4096</code> - size in bytes of the directory</li>
+<li><code>Aug 13 09:04</code> - date of last modification</li>
+</ul>
+<p>As we can see, only the owner of the directory (<code>root</code>) has write permissions necessary to create files and folders - all others can either read or execute them, but not write new ones. We can double check that:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>app@e6bde753d120:~/app$ touch <span style="color:#007020">test</span>
+</span></span><span style="display:flex;"><span>touch: cannot touch <span style="color:#4070a0">&#39;test&#39;</span>: Permission denied
+</span></span></code></pre></div><p>As expected, <code>app</code> doesn&rsquo;t have permissions to create the file. This is good for security purposes - we don&rsquo;t want rogue processes creating and/or modifying random files - but it also means that we need to be deliberate about what the user can and can&rsquo;t do, which folders it should own, and which folders/files we should create manually.</p>
+<h1 id="alternative-solution">Alternative Solution</h1>
+<p>After short exploration of the permissions, we can naturally ask ourselves if we could make the <code>app</code> own <code>/app</code> folder. The answer is yes:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">RUN</span> mkdir -p <span style="color:#bb60d5">$CODE_DIR</span> <span style="color:#666">&amp;&amp;</span> chown app <span style="color:#bb60d5">$CODE_DIR</span><span style="">
+</span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">WORKDIR</span><span style="color:#4070a0"> $CODE_DIR</span><span style="">
+</span></span></span></code></pre></div><p>This will create a directory for the app and change its owner to <code>app</code>. Then, running <code>ls -la</code> we get the following results:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>app@0703f786ec8a:~/app$ ls -la
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#40a070">1</span> app root      <span style="color:#40a070">4096</span> Aug <span style="color:#40a070">13</span> 09:37 .
+</span></span></code></pre></div><p>Now the <code>~/app</code> directory is owned by <code>app</code>, and it has all the permissions it needs. And indeed, if we run <code>collectstatic</code> we&rsquo;ll be able to create the necessary folders and files:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>app@0703f786ec8a:~/app$ python manage.py collectstatic
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>You have requested to collect static files at the destination
+</span></span><span style="display:flex;"><span>location as specified in your settings:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    /home/project/app/static
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>This will overwrite existing files!
+</span></span><span style="display:flex;"><span>Are you sure you want to <span style="color:#007020;font-weight:bold">do</span> this?
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Type <span style="color:#4070a0">&#39;yes&#39;</span> to <span style="color:#007020;font-weight:bold">continue</span>, or <span style="color:#4070a0">&#39;no&#39;</span> to cancel: yes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#40a070">0</span> static files copied to <span style="color:#4070a0">&#39;/home/project/app/static&#39;</span>, <span style="color:#40a070">163</span> unmodified.
+</span></span></code></pre></div><h1 id="conclusion">Conclusion</h1>
+<p>Despite Docker abstracting away a lot of complexity of creating the images, we still need to understand the building blocks on which it operates. And even if we do understand it, we need to be careful to not overlook small but important details in our Dockerfiles. On the flip side, the best way to learn these things is to fail and spend time figuring out why.</p>
+
+  </section>
+
+
+    <footer>
+  <div class="date">Last edit: August 13, 2022</div>
+</footer>
+    <div class="other-entries">
+  <div class="previous-entry">
+    
+      <div>Previous entry:</div>
+      <a href="https://vilisimo.com/blog/setting-up-pytest-with-github-actions/">Setting up pytest with GitHub Actions</a>
+    
+  </div>
+
+  <div class="next-entry">
+    
+  </div>
+</div>
+  </article>
+  
+
+    </main>
+
+    <footer>
+      
+        <section id="social-icons">
+    
+        <a href="https://stackoverflow.com/users/4543382" rel="noopener" target="_blank">
+            <img src="https://vilisimo.com/img/stackoverflow.svg" alt="StackOverflow" />
+        </a>
+    
+    
+    
+        <a href="https://www.github.com/vilisimo" rel="noopener" target="_blank">
+            <img src="https://vilisimo.com/img/github.svg" alt="GitHub" />
+        </a>
+    
+
+    
+        <a href="https://www.linkedin.com/in/simonasviliunas" rel="noopener" target="_blank">
+            <img src="https://vilisimo.com/img/linkedin.svg" alt="LinkedIn" />
+        </a>
+    
+</section>
+<section>
+    <small>2022 • Simonas Viliūnas</small>
+</section>
+
+
+      
+    </footer>
+  </body>
+  
+</html>

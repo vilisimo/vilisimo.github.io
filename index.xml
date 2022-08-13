@@ -92,6 +92,16 @@ Why The main motivation for the app was to see what it feels like when half of t
     </item>
     
     <item>
+      <title>File System Permissions in Dockerfile</title>
+      <link>https://vilisimo.com/blog/file-system-permissions-in-dockerfile/</link>
+      <pubDate>Sat, 13 Aug 2022 11:37:56 +0300</pubDate>
+      
+      <guid>https://vilisimo.com/blog/file-system-permissions-in-dockerfile/</guid>
+      <description>Few days ago I was playing with a Django application, trying to containerize it. Everything was going smoothly until I tried to run collectstatic in Dockerfile. Attempting to do so threw the following error:
+Traceback (most recent call last): File &amp;#34;/home/project/app/manage.py&amp;#34;, line 33, in &amp;lt;module&amp;gt; main() File &amp;#34;/home/project/app/manage.py&amp;#34;, line 29, in main execute_from_command_line(sys.argv) File &amp;#34;/usr/local/lib/python3.10/site-packages/django/core/management/__init__.py&amp;#34;, line 446, in execute_from_command_line utility.execute() File &amp;#34;/usr/local/lib/python3.10/site-packages/django/core/management/__init__.py&amp;#34;, line 440, in execute self.fetch_command(subcommand).run_from_argv(self.argv) File &amp;#34;/usr/local/lib/python3.10/site-packages/django/core/management/base.py&amp;#34;, line 402, in run_from_argv self.</description>
+    </item>
+    
+    <item>
       <title>Setting up pytest with GitHub Actions</title>
       <link>https://vilisimo.com/blog/setting-up-pytest-with-github-actions/</link>
       <pubDate>Wed, 04 May 2022 23:00:46 +0300</pubDate>

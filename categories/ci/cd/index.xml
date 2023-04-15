@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://vilisimo.com/categories/ci/cd/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Setting up pytest with GitHub Actions</title>
+      <title>Setting Up pytest With GitHub Actions</title>
       <link>https://vilisimo.com/blog/setting-up-pytest-with-github-actions/</link>
       <pubDate>Wed, 04 May 2022 23:00:46 +0300</pubDate>
       

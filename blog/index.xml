@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0300</lastBuildDate><atom:link href="https://vilisimo.com/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Git Tips And Tricks</title>
+      <title>Git Tips and Tricks</title>
       <link>https://vilisimo.com/blog/git-tips-and-tricks/</link>
       <pubDate>Wed, 12 Apr 2023 20:47:55 +0300</pubDate>
       
@@ -27,7 +27,7 @@ Traceback (most recent call last): File &amp;#34;/home/project/app/manage.py&amp
     </item>
     
     <item>
-      <title>Setting up pytest with GitHub Actions</title>
+      <title>Setting Up pytest With GitHub Actions</title>
       <link>https://vilisimo.com/blog/setting-up-pytest-with-github-actions/</link>
       <pubDate>Wed, 04 May 2022 23:00:46 +0300</pubDate>
       

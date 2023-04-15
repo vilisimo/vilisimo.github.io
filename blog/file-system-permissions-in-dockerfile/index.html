@@ -81,7 +81,7 @@ if (!doNotTrack) {
       "datePublished": "2022-08-13T11:37:56+03:00",
       "dateModified" : "2022-08-13T11:37:56+03:00",
       "url" : "https:\/\/vilisimo.com\/blog\/file-system-permissions-in-dockerfile\/",
-      "wordCount" : "1102",
+      "wordCount" : "1101",
       "keywords" : [ "docker","django","linux","Blog" ]
   }
   </script>
@@ -214,7 +214,7 @@ if (!doNotTrack) {
 </span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">USER</span><span style="color:#4070a0"> app</span><span style="">
 </span></span></span><span style="display:flex;"><span><span style="">
 </span></span></span><span style="display:flex;"><span><span style=""></span><span style="color:#007020;font-weight:bold">RUN</span> python manage.py collectstatic --no-input<span style="">
-</span></span></span></code></pre></div><p>What is happening here? Well, first of all, we create a <code>static/</code> directory, which matches the static directory specified in the <code>settings.py</code> file. This is where we intend the static assets to live. However, note that we have this command before specifying that we wish to switch to <code>app</code> user (<code>USER app</code>). Thus, the command runs as <code>root</code>. Therefore, it is owned by <code>root</code>, and the <code>app</code> user has no permissions to write to it. The simple fix is to add edit the line to read as follows:</p>
+</span></span></span></code></pre></div><p>What is happening here? Well, first of all, we create a <code>static/</code> directory, which matches the static directory specified in the <code>settings.py</code> file. This is where we intend the static assets to live. However, note that we have this command before specifying that we wish to switch to <code>app</code> user (<code>USER app</code>). Thus, the command runs as <code>root</code>. Therefore, it is owned by <code>root</code>, and the <code>app</code> user has no permissions to write to it. The simple fix is to edit the line to read as follows:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">RUN</span> mkdir <span style="color:#bb60d5">$CODE_DIR</span>/static <span style="color:#666">&amp;&amp;</span> chown app <span style="color:#bb60d5">$CODE_DIR</span>/static<span style="">
 </span></span></span></code></pre></div><p>Now, <code>static/</code> folder belongs to <code>app</code>, and <code>app</code> can create additional folders and files inside of it.</p>
 <h1 id="further-exploration">Further Exploration</h1>
@@ -277,7 +277,7 @@ if (!doNotTrack) {
 
 
     <footer>
-  <div class="date">Last edit: August 13, 2022</div>
+  <div class="date">Last edit: April 15, 2023</div>
 </footer>
     <div class="other-entries">
   <div class="previous-entry">
@@ -318,7 +318,7 @@ if (!doNotTrack) {
     
 </section>
 <section>
-    <small>2022 • Simonas Viliūnas</small>
+    <small>2023 • Simonas Viliūnas</small>
 </section>
 
 

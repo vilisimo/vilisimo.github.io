@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="author" content="Simonas Viliūnas">
+
+<meta name="description" content="Git is ubiquitous, but the ways of how people use it are not. Care to compare the toolsets?">
+    
+    
+      <title>Git Tips And Tricks :: Machine Code Never Lies</title>
+
+<link rel="canonical" href="https://vilisimo.com/blog/git-tips-and-tricks/">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+
+<link rel="stylesheet" href="https://vilisimo.com/css/style.css">
+
+    <link rel="shortcut icon" type="image/ico" href="https://vilisimo.com/img/lies.ico">
+
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-113536003-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/vilisimo.com\/"
+      },
+      "articleSection" : "blog",
+      "name" : "Git Tips And Tricks",
+      "headline" : "Git Tips And Tricks",
+      "description" : "Git is ubiquitous, but the ways of how people use it are not. Care to compare the toolsets?",
+      "inLanguage" : "en-US",
+      "author" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "creator" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "accountablePerson" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "copyrightHolder" : {
+        "@type": "Person",
+        "name": "Simonas Viliūnas"
+      },
+      "copyrightYear" : "2023",
+      "datePublished": "2023-04-12T20:47:55+03:00",
+      "dateModified" : "2023-04-12T20:47:55+03:00",
+      "url" : "https:\/\/vilisimo.com\/blog\/git-tips-and-tricks\/",
+      "wordCount" : "1468",
+      "keywords" : [ "git","Blog" ]
+  }
+  </script>
+    
+  </head>
+  
+  <body>
+    <header id="page-header">
+      
+        <h1>
+  <a href="https://vilisimo.com/">Machine Code Never Lies</a>
+</h1>
+
+<nav>
+  <ul>
+    <li class="">
+        <a href="https://vilisimo.com/">Home</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.com/blog/">Blog</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.com/projects/">Projects</a>
+      </li>
+    <li class="">
+        <a href="https://vilisimo.com/about/">About</a>
+      </li>
+    
+  </ul>
+</nav>
+
+      
+    </header>
+
+    <main>
+      
+
+  <article class="markdown">
+    <header>
+  <h1>
+    <a href="https://vilisimo.com/blog/git-tips-and-tricks/">Git Tips And Tricks</a>
+  </h1>
+  <div class="article-info">
+    <div class="date">April 12, 2023</div>
+    
+      <div class="taxonomies"><a href="https://vilisimo.com/categories/git">git</a></div>
+    
+  </div>
+</header>
+    
+  
+    <aside>
+        <h2 id="table-of-contents">Contents</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#diff-the-changes">Diff the Changes</a></li>
+    <li><a href="#rewrite-very-recent-history">Rewrite (Very Recent) History</a></li>
+    <li><a href="#rewrite-any-history">Rewrite (Any) History</a></li>
+    <li><a href="#rename-the-branch">Rename The Branch</a></li>
+    <li><a href="#navigating-between-two-branches-with-ease">Navigating Between Two Branches With Ease</a></li>
+    <li><a href="#switching-to-switch">Switching to Switch</a></li>
+    <li><a href="#get-brief-history-of-commits">Get (Brief) History of Commits</a></li>
+    <li><a href="#grep-the-log">Grep the Log</a></li>
+    <li><a href="#grep-the-content">Grep the Content</a></li>
+    <li><a href="#set-up-aliases">Set Up Aliases</a></li>
+  </ul>
+</nav>
+    </aside>
+  
+  <section>
+    <p>These days, <code>git</code> is more or less synonymous with version control system. It does not matter what programming language you use, chances are you’ll use <code>git</code> to keep track of the code. Thus, one of the best ways to improve your development confidence and velocity is to get to know <code>git</code> well. While it is not necessary to understand all the minute details to be a proficient user, having a few neat tricks up your sleeve certainly helps. Below I’ve documented a few that I use all the time.</p>
+<h2 id="diff-the-changes">Diff the Changes</h2>
+<p>If you are creating pull requests (PR) for other people to review, chances are you want to show your best work to them. To do so, I find it useful to go through the changes myself once more before creating a PR for someone to look at. For me, some issues pop out much more visibly when I look at the code outside of code editor. Thus, before pushing a branch to remote and creating a PR I always run the following commands:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git diff &lt;branch&gt; <span style="color:#60a0b0;font-style:italic"># if I want to compare all the changes to &lt;branch&gt;</span>
+</span></span><span style="display:flex;"><span>git diff &lt;branch&gt; &lt;path-to-file&gt; <span style="color:#60a0b0;font-style:italic"># if I’m interested in a specific file</span>
+</span></span></code></pre></div><p>Note that <code>&lt;branch&gt;</code> here doesn’t have to be <code>main</code> or <code>master</code>. It can be any branch you wish to compare your branch/file against.</p>
+<h2 id="rewrite-very-recent-history">Rewrite (Very Recent) History</h2>
+<p>When working on a big set of changes, I like to split the work into several self-contained commits. However, this split is not always trivial to figure out from the get go. With <code>git</code>, I don&rsquo;t need to stress about it. Instead, I mold the history into coherent commits later, when the picture is clearer. However, to do that, one has to be able to edit commits.</p>
+<p>There are several ways to do it. The easiest one is to run:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git commit --amend
+</span></span></code></pre></div><p>This command will let you change the message of the last commit.</p>
+<p>On the other hand, if you feel that the commit message is just fine but the content of it needs a few more changes, you can do that, too. Simply stage the files (or changes) that you wish to include in the last commit, and issue the following command:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git commit --amend --no-edit
+</span></span></code></pre></div><p>I use this all the time. In fact, I use it so often that I even have an alias for it (discussed later).</p>
+<h2 id="rewrite-any-history">Rewrite (Any) History</h2>
+<p>The previous couple of commands are useful for editing the last commit. If the commit is older, I reach for:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git rebase -i HEAD~<span style="color:#666">{</span>n<span style="color:#666">}</span>
+</span></span></code></pre></div><p>where <code>{n}</code> is the number of commits to include in the rebase. In the window that pops up replace <code>pick</code> with <code>r</code> or <code>reword</code>, and you’ll be able to rewrite commit messages. I would recommend exploring other options, too. I regularly use all of them, and it’s well worth your time to get comfortable with them.</p>
+<h2 id="rename-the-branch">Rename The Branch</h2>
+<p>Sometimes, the first attempt to find a fitting name for a branch leaves a lot to be desired. However, never fret - <code>git</code> has our back. Fixing the mistake is as easy as:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git checkout &lt;branch-name&gt;
+</span></span><span style="display:flex;"><span>git branch -m &lt;new-branch-name&gt;
+</span></span></code></pre></div><p>Of course, you do not need to check out the branch to be able to rename it:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git branch -m &lt;old-branch-name&gt; &lt;new-branch-name&gt;
+</span></span></code></pre></div><h2 id="navigating-between-two-branches-with-ease">Navigating Between Two Branches With Ease</h2>
+<p>Have you ever been in a situation where you had to switch from the main branch to another back and forth? Are you tired of typing</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git checkout shiny-changes
+</span></span><span style="display:flex;"><span>git checkout master 
+</span></span><span style="display:flex;"><span>git checkout shiny-changes
+</span></span><span style="display:flex;"><span>git checkout master 
+</span></span><span style="display:flex;"><span>…
+</span></span></code></pre></div><p>all the time? Well, turns out you don’t have to.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git checkout -
+</span></span></code></pre></div><p>switches to the previous branch. In fact, you can be even more fancy and jump a few branches back. For example:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git checkout master <span style="color:#60a0b0;font-style:italic"># switches to master</span>
+</span></span><span style="display:flex;"><span>git checkout first-branch <span style="color:#60a0b0;font-style:italic"># switches to first-branch</span>
+</span></span><span style="display:flex;"><span>git checkout second-branch <span style="color:#60a0b0;font-style:italic"># switches to second branch</span>
+</span></span><span style="display:flex;"><span>git checkout master <span style="color:#60a0b0;font-style:italic"># back to master</span>
+</span></span><span style="display:flex;"><span>git checkout @<span style="color:#666">{</span>-2<span style="color:#666">}</span> <span style="color:#60a0b0;font-style:italic"># back to first-branch</span>
+</span></span></code></pre></div><p>According to <a href="https://git-scm.com/docs/git-checkout"><code>git</code> documentation</a>, <code>@{-N}</code> can be used as follows:</p>
+<blockquote>
+<p>You can use the @{-N} syntax to refer to the N-th last branch/commit switched to using &ldquo;git switch&rdquo; or &ldquo;git checkout&rdquo; operation. You may also specify - which is synonymous to @{-1}. This is often used to switch quickly between two branches, or to undo a branch switch by mistake.</p>
+</blockquote>
+<p>While I personally do not find myself reaching for <code>@{-N}</code> in my daily flow (other than the <code>-</code> shortcut for <code>@{-1}</code>), it might come in handy in some cases.</p>
+<h2 id="switching-to-switch">Switching to Switch</h2>
+<p><code>git checkout</code> has been with us for ages. You can create branches, switch between them, restore files to a certain version, and perform a bunch of other essential operations with it. The problem is that even hardened <code>git</code> veterans sometimes get confused about what exactly <code>git checkout</code> is capable of. To remedy this, the <a href="https://github.com/git/git/blob/master/Documentation/RelNotes/2.23.0.txt">2.23.0</a> version introduced a couple of new commands that are designed to split <code>git checkout</code> functionality. These commands are <code>git switch</code> and <code>git restore</code>. The former can be used to change branches, while the latter can be used for resetting the files to certain revisions. Therefore, instead of:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git checkout main
+</span></span></code></pre></div><p>You can do:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git switch main
+</span></span></code></pre></div><p>There are <a href="https://git-scm.com/docs/git-restore">many</a> <a href="https://git-scm.com/docs/git-switch">more</a> operations that can be performed with these two commands - if you&rsquo;re comfortable with <code>git checkout</code>, you’ll find them to be familiar.</p>
+<p>On a personal note, I still use <code>git checkout</code> for most of the functionality that <code>git switch</code> and <code>git restore</code> could be used for. However, that’s simply because I am used to it. Conceptually, the new commands seem clearer and more specialized.</p>
+<h2 id="get-brief-history-of-commits">Get (Brief) History of Commits</h2>
+<p>Sometimes you want to check the previous commits. However, <code>git log</code> is too verbose - you don’t care about the author, date, or any of that noise. To avoid it, you can ask for a condensed history, like so:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git log --oneline
+</span></span></code></pre></div><p>By the way, one can limit the lines this command outputs by appending <code>-{n}</code> to the command:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git log --oneline -<span style="color:#666">{</span>n<span style="color:#666">}</span>
+</span></span></code></pre></div><p>Where <code>n</code> is the amount of lines you wish the command to output.</p>
+<h2 id="grep-the-log">Grep the Log</h2>
+<p>Sometimes you work in an environment <a href="https://www.youtube.com/watch?v=9KAGwNtI26w&amp;pp=ygUjcG9pbnRzIGFyZSBtYWRlIHVwIGFuZCBkb24ndCBtYXR0ZXI%3D">where commits are made up and commit messages do not matter</a>. Other times, however, commit messages are actually useful and it pays off to read through them. In such times, you might wish to search for a specific commit by its message:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git log --all --grep<span style="color:#666">=</span><span style="color:#4070a0">&#39;&lt;commit msg&gt;&#39;</span>
+</span></span></code></pre></div><p>As a nice side effect, this command motivates one to aim for descriptive and clear commit messages - a skill that is woefully rare.</p>
+<h2 id="grep-the-content">Grep the Content</h2>
+<p>For completeness, it is worth noting that you can grep not only commit messages, but commit content, too. While I do not use this command all that often, it sometimes does come in handy, especially when I am looking for vaguely familiar code that I know was removed. This is the incantation to perform said magic:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git grep &lt;regexp&gt; <span style="color:#007020;font-weight:bold">$(</span>git rev-list --all<span style="color:#007020;font-weight:bold">)</span>
+</span></span></code></pre></div><p>A more thorough explanation can be found in <a href="https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history">StackOverflow</a>.</p>
+<h2 id="set-up-aliases">Set Up Aliases</h2>
+<p>While knowing a bunch of <code>git</code> commands is useful, it’s hard to deny that many of them feel like arcane incantations to summon demons, or worse. The commands are not particularly intuitive or concise, and they tend to slip out of the mind the minute you turn away from your terminal. Thankfully, <code>git</code> has a wonderful functionality to set up custom aliases. With the help of these, you can turn demonic rituals such as these:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git log --graph --date-order --date<span style="color:#666">=</span>short --pretty<span style="color:#666">=</span>format:<span style="color:#4070a0">&#39;%C(auto)%h%d %C(reset)%s :: %C(bold blue)%ce %C(reset)%C(green)(%cr)&#39;</span>
+</span></span></code></pre></div><p>Into something more readable:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git lg
+</span></span></code></pre></div><p>There are two ways to create aliases. The first one (and the one I prefer) is to edit the <code>~/.gitconfig</code> file. Add the following lines:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[alias]
+</span></span><span style="display:flex;"><span>    cm=commit -m
+</span></span></code></pre></div><p>And you’ll be able to use <code>git cm “commit message”</code> instead of typing in <code>git commit -m “commit message”</code>.</p>
+<p>The second way is to set it up via git config:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git config --global alias.cm ‘commit -m’
+</span></span></code></pre></div><p>Note that you should use single quotes (<code>’</code>) on Unix or double quotes (<code>”</code>) on Windows if the alias has a space (like in the example above).</p>
+<p>I use a bunch of <code>git</code> aliases every day. I don’t have anything particularly complicated set up, but I find that even aliases for relatively short and simple commands save a lot of time. At the moment, these are my most used ones:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ca = commit --amend
+</span></span><span style="display:flex;"><span>cm = commit -m
+</span></span><span style="display:flex;"><span>ds = diff --staged
+</span></span><span style="display:flex;"><span>ol = log --oneline
+</span></span><span style="display:flex;"><span>rb = branch -m
+</span></span><span style="display:flex;"><span>cane = commit --amend --no-edit
+</span></span><span style="display:flex;"><span>alias = ! git config -l | grep alias | cut -c 7-
+</span></span><span style="display:flex;"><span>cleanup = fetch --all --prune
+</span></span></code></pre></div><p>Feel free to steal them, edit them and make your workflow easier. You can also take a look at a full list of aliases that I use <a href="https://github.com/vilisimo/setup/blob/master/git/gitconfig">here</a>.</p>
+
+  </section>
+
+
+    <footer>
+  <div class="date">Last edit: April 15, 2023</div>
+</footer>
+    <div class="other-entries">
+  <div class="previous-entry">
+    
+      <div>Previous entry:</div>
+      <a href="https://vilisimo.com/blog/file-system-permissions-in-dockerfile/">File System Permissions in Dockerfile</a>
+    
+  </div>
+
+  <div class="next-entry">
+    
+  </div>
+</div>
+  </article>
+  
+
+    </main>
+
+    <footer>
+      
+        <section id="social-icons">
+    
+        <a href="https://stackoverflow.com/users/4543382" rel="noopener" target="_blank">
+            <img src="https://vilisimo.com/img/stackoverflow.svg" alt="StackOverflow" />
+        </a>
+    
+    
+    
+        <a href="https://www.github.com/vilisimo" rel="noopener" target="_blank">
+            <img src="https://vilisimo.com/img/github.svg" alt="GitHub" />
+        </a>
+    
+
+    
+        <a href="https://www.linkedin.com/in/simonasviliunas" rel="noopener" target="_blank">
+            <img src="https://vilisimo.com/img/linkedin.svg" alt="LinkedIn" />
+        </a>
+    
+</section>
+<section>
+    <small>2023 • Simonas Viliūnas</small>
+</section>
+
+
+      
+    </footer>
+  </body>
+  
+</html>

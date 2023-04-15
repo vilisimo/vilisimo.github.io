@@ -92,6 +92,15 @@ Why The main motivation for the app was to see what it feels like when half of t
     </item>
     
     <item>
+      <title>Git Tips And Tricks</title>
+      <link>https://vilisimo.com/blog/git-tips-and-tricks/</link>
+      <pubDate>Wed, 12 Apr 2023 20:47:55 +0300</pubDate>
+      
+      <guid>https://vilisimo.com/blog/git-tips-and-tricks/</guid>
+      <description>These days, git is more or less synonymous with version control system. It does not matter what programming language you use, chances are you’ll use git to keep track of the code. Thus, one of the best ways to improve your development confidence and velocity is to get to know git well. While it is not necessary to understand all the minute details to be a proficient user, having a few neat tricks up your sleeve certainly helps.</description>
+    </item>
+    
+    <item>
       <title>File System Permissions in Dockerfile</title>
       <link>https://vilisimo.com/blog/file-system-permissions-in-dockerfile/</link>
       <pubDate>Sat, 13 Aug 2022 11:37:56 +0300</pubDate>

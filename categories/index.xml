@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Machine Code Never Lies</title>
+    <title>Categories of Posts on Machine Code Never Lies</title>
     <link>https://vilisimo.com/categories/</link>
-    <description>Recent content in Categories on Machine Code Never Lies</description>
+    <description>Recent content in Categories of Posts on Machine Code Never Lies</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Apr 2023 20:47:55 +0300</lastBuildDate><atom:link href="https://vilisimo.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Apr 2023 21:30:00 +0300</lastBuildDate><atom:link href="https://vilisimo.com/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>git</title>
       <link>https://vilisimo.com/categories/git/</link>
